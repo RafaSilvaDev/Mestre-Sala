@@ -1,0 +1,104 @@
+@import "./reset.scss";
+
+@mixin displayFlex($direction, $align, $justify) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: $align;
+  justify-content: $justify;
+}
+
+.login-page {
+    @include displayFlex(column, center, center);
+    background: linear-gradient(224deg, $primary-blue 0%, $primary-green 100%);
+    height: 100vh;
+    width: 100vw;
+}
+
+.content-box {
+  @include displayFlex(column, center, center);
+
+  .app-title {
+    background-color: $primary-white;
+    color: $primary-green;
+    padding: .5rem;
+    width: 10.1rem;
+    align-self: flex-end;
+    text-align: center;
+    box-shadow: 0px -1px 4px 0px $primary-gray inset;
+  }
+
+  .form-panel {
+    @include displayFlex(column, center, center);
+    background-color: $primary-white;
+    height: 25rem;
+    width: 20rem;
+
+    .title {
+      font-size: 1.8rem;
+      font-weight: 400;
+      color: $primary-blue;
+    }
+
+    form {
+      @include displayFlex(column, center, center);
+      height: 100%;
+      width: 100%;
+      padding: 1.62rem;
+
+      .user-label,
+      .passwd-label {
+        color: $primary-blue;
+        width: 100%;
+        text-align: start;
+        margin-top: 1.8rem;
+      }
+
+      .user-input,
+      .passwd-input {
+        background-color: $secondary-white;
+        color: $primary-blue;
+        width: 100%;
+        padding: 0.6rem;
+        border: none;
+        border-bottom: 1px solid $primary-blue;
+        outline: none;
+        transition: all 0.2s;
+        
+        &:focus {
+          border-bottom: 1px solid $primary-green;
+          background-color: $secondary-green;
+        }
+    }
+
+    .login-btn {
+        width: 100%;
+        padding: .7rem;
+        margin-top: 1.8rem;
+        background-color: $primary-green;
+        color: $primary-white;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        transition: all 0.2s;
+
+        &:hover,
+        &:focus{
+            background-color: $dark-green;
+        }
+      }
+
+      .sign-up-link{
+        color: $primary-green;
+        font-size: .84rem;
+        margin-top: 1rem;
+        outline: none;
+        transition: all 0.2s;
+
+        &:hover,
+        &:focus{
+            color: $primary-blue;
+        }
+      }
+    }
+  }
+}

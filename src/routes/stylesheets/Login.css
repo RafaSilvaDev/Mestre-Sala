@@ -1,0 +1,102 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+.login-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(224deg, #001F3F 0%, #3D9970 100%);
+  height: 100vh;
+  width: 100vw;
+}
+
+.content-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.content-box .app-title {
+  background-color: #EBEBEB;
+  color: #3D9970;
+  padding: 0.5rem;
+  width: 10.1rem;
+  align-self: flex-end;
+  text-align: center;
+  box-shadow: 0px -1px 4px 0px #838383 inset;
+}
+.content-box .form-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #EBEBEB;
+  height: 25rem;
+  width: 20rem;
+}
+.content-box .form-panel .title {
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: #001F3F;
+}
+.content-box .form-panel form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  padding: 1.62rem;
+}
+.content-box .form-panel form .user-label,
+.content-box .form-panel form .passwd-label {
+  color: #001F3F;
+  width: 100%;
+  text-align: start;
+  margin-top: 1.8rem;
+}
+.content-box .form-panel form .user-input,
+.content-box .form-panel form .passwd-input {
+  background-color: rgba(143, 143, 143, 0.14);
+  color: #001F3F;
+  width: 100%;
+  padding: 0.6rem;
+  border: none;
+  border-bottom: 1px solid #001F3F;
+  outline: none;
+  transition: all 0.2s;
+}
+.content-box .form-panel form .user-input:focus,
+.content-box .form-panel form .passwd-input:focus {
+  border-bottom: 1px solid #3D9970;
+  background-color: rgba(61, 153, 112, 0.2549019608);
+}
+.content-box .form-panel form .login-btn {
+  width: 100%;
+  padding: 0.7rem;
+  margin-top: 1.8rem;
+  background-color: #3D9970;
+  color: #EBEBEB;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.content-box .form-panel form .login-btn:hover, .content-box .form-panel form .login-btn:focus {
+  background-color: #2d7655;
+}
+.content-box .form-panel form .sign-up-link {
+  color: #3D9970;
+  font-size: 0.84rem;
+  margin-top: 1rem;
+  outline: none;
+  transition: all 0.2s;
+}
+.content-box .form-panel form .sign-up-link:hover, .content-box .form-panel form .sign-up-link:focus {
+  color: #001F3F;
+}/*# sourceMappingURL=Login.css.map */
