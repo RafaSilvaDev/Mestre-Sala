@@ -5,14 +5,14 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
-.login-page {
+.signup-page {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   background: linear-gradient(224deg, #001F3F 0%, #3D9970 100%);
-  height: 100vh;
-  width: 100vw;
+  min-height: 100%;
+  width: 100%;
 }
 
 .content-box {
@@ -37,7 +37,6 @@
   justify-content: center;
   background-color: #EBEBEB;
   height: auto;
-  padding: 1rem 0;
   width: 19rem;
 }
 .content-box .form-panel .title {
@@ -54,15 +53,19 @@
   width: 100%;
   padding: 1.62rem;
 }
+.content-box .form-panel form .fullname-label,
 .content-box .form-panel form .user-label,
-.content-box .form-panel form .passwd-label {
+.content-box .form-panel form .passwd-label,
+.content-box .form-panel form .confirm-passwd-label {
   color: #001F3F;
   width: 100%;
   text-align: start;
   margin-top: 1.8rem;
 }
+.content-box .form-panel form .fullname-input,
 .content-box .form-panel form .user-input,
-.content-box .form-panel form .passwd-input {
+.content-box .form-panel form .passwd-input,
+.content-box .form-panel form .confirm-passwd-input {
   background-color: rgba(143, 143, 143, 0.14);
   color: #001F3F;
   width: 100%;
@@ -72,12 +75,14 @@
   outline: none;
   transition: all 0.2s;
 }
+.content-box .form-panel form .fullname-input:focus,
 .content-box .form-panel form .user-input:focus,
-.content-box .form-panel form .passwd-input:focus {
+.content-box .form-panel form .passwd-input:focus,
+.content-box .form-panel form .confirm-passwd-input:focus {
   border-bottom: 1px solid #3D9970;
   background-color: rgba(61, 153, 112, 0.2549019608);
 }
-.content-box .form-panel form .login-btn {
+.content-box .form-panel form .signup-btn {
   width: 100%;
   padding: 0.7rem;
   margin-top: 1.8rem;
@@ -88,7 +93,7 @@
   cursor: pointer;
   transition: all 0.2s;
 }
-.content-box .form-panel form .login-btn:hover, .content-box .form-panel form .login-btn:focus {
+.content-box .form-panel form .signup-btn:hover, .content-box .form-panel form .signup-btn:focus {
   background-color: #2d7655;
 }
 .content-box .form-panel form .sign-up-link {
@@ -100,4 +105,4 @@
 }
 .content-box .form-panel form .sign-up-link:hover, .content-box .form-panel form .sign-up-link:focus {
   color: #001F3F;
-}/*# sourceMappingURL=Login.css.map */
+}/*# sourceMappingURL=SignUp.css.map */

@@ -9,7 +9,7 @@ const Login = () => {
           <p>MESTRE SALA</p>
         </div>
         <div className="form-panel">
-          <form action="">
+          <form action="" method="POST">
           <h1 className="title">Login</h1>
             <label htmlFor="user-input" className="user-label">
               Usuário
@@ -19,6 +19,7 @@ const Login = () => {
               name="user-input"
               className="user-input"
               placeholder="Ex: exemplo@email.com"
+              required
             />
             <label htmlFor="passwd-input" className="passwd-label">
               Senha
@@ -28,6 +29,7 @@ const Login = () => {
               name="passwd-input"
               className="passwd-input"
               placeholder="Insira sua senha aqui"
+              required
             />
             <button type="submit" className="login-btn">
               Entrar

@@ -1,0 +1,27 @@
+@import "./reset.scss";
+
+@mixin displayFlex($direction, $align, $justify) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: $align;
+  justify-content: $justify;
+}
+
+.navbar-body {
+  background-color: $primary-blue;
+  height: 5.25rem;
+  width: 100%;
+  @include displayFlex(row, center , space-between);
+  padding: 0 1.29rem;
+  position: sticky;
+  z-index: 10;
+
+  .logo-text {
+    text-align: center;
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    color: $primary-white;
+  }
+}
