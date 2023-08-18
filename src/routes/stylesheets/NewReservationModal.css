@@ -1,0 +1,17 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+.modal-body {
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+.modal-body .modal-content {
+  z-index: 20;
+  height: 5rem;
+  width: 5rem;
+}/*# sourceMappingURL=NewReservationModal.css.map */

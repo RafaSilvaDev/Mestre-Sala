@@ -11,13 +11,47 @@
   text-align: center;
   font-size: 2rem;
   font-style: normal;
-  // font-weight: 400;
   line-height: normal;
   color: $primary-white;
+  transition: all .2s;
+  outline: none;
+
+  &:hover,
+  &:focus {
+    color: $primary-green;
+  }
 }
 
 .navbar-body {
-  background-color: $primary-blue;
+  position: sticky;
+  right: 0;
+  left: 0;
+  top: 0;
+}
+
+.nav-menu,
+.navbar-content {
+  background: $primary-blue;
+}
+
+.navbar-content {
+  @include displayFlex(column, center, center);
+  height: auto;
+  border-bottom: 0.2rem solid $primary-green;
+
+  .navbar-link {
+    width: 100%;
+    height: auto;
+    padding: 1rem 0;
+    color: $primary-white;
+    text-align: center;
+    font-size: 1.5rem;
+    transition: all .2s;
+
+    &:hover {
+      color: $primary-green;
+    }
+  }
 }
 
 .animated-icon2 {

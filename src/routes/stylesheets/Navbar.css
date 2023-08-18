@@ -11,10 +11,44 @@
   font-style: normal;
   line-height: normal;
   color: #EBEBEB;
+  transition: all 0.2s;
+  outline: none;
+}
+.logo-text:hover, .logo-text:focus {
+  color: #3D9970;
 }
 
 .navbar-body {
-  background-color: #001F3F;
+  position: sticky;
+  right: 0;
+  left: 0;
+  top: 0;
+}
+
+.nav-menu,
+.navbar-content {
+  background: #001F3F;
+}
+
+.navbar-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  border-bottom: 0.2rem solid #3D9970;
+}
+.navbar-content .navbar-link {
+  width: 100%;
+  height: auto;
+  padding: 1rem 0;
+  color: #EBEBEB;
+  text-align: center;
+  font-size: 1.5rem;
+  transition: all 0.2s;
+}
+.navbar-content .navbar-link:hover {
+  color: #3D9970;
 }
 
 .animated-icon2 {

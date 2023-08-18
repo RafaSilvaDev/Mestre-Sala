@@ -16,7 +16,7 @@ const Navbar = () => {
       <MDBNavbar className="nav-menu">
         <MDBContainer fluid>
           <div className="logo">
-            <h1 className="logo-text">MESTRE SALA</h1>
+            <Link className="logo-text" to="/">MESTRE SALA</Link>
           </div>
           <MDBNavbarToggler
             type="button"
@@ -39,9 +39,10 @@ const Navbar = () => {
 
       <MDBCollapse show={showAnimated2}>
         <div className="navbar-content">
-          <h3>Link 1</h3>
-          <h3>Link 2</h3>
-          <Link to="/login">Sair</Link>
+          <Link className="navbar-link" to="/">Home</Link>
+          <Link className="navbar-link" to="/">Minhas Reservas</Link>
+          <Link className="navbar-link" to="/">Salas</Link>
+          <Link className="navbar-link" to="/login">Sair</Link>
         </div>
       </MDBCollapse>
     </div>
