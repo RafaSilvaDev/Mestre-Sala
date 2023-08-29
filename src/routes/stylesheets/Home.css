@@ -1,0 +1,126 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+.modal-dialog {
+  max-height: 95%;
+}
+.modal-dialog .p-dialog-header,
+.modal-dialog .p-dialog-content {
+  background: #EBEBEB;
+  color: #001F3F;
+  border-bottom: none;
+}
+.modal-dialog .p-dialog-header .p-dialog-header-icon,
+.modal-dialog .p-dialog-content .p-dialog-header-icon {
+  color: #001F3F;
+}
+.modal-dialog .p-dialog-header .p-dialog-header-icon:focus, .modal-dialog .p-dialog-header .p-dialog-header-icon:active, .modal-dialog .p-dialog-header .p-dialog-header-icon:hover,
+.modal-dialog .p-dialog-content .p-dialog-header-icon:focus,
+.modal-dialog .p-dialog-content .p-dialog-header-icon:active,
+.modal-dialog .p-dialog-content .p-dialog-header-icon:hover {
+  color: #3D9970 !important;
+}
+.modal-dialog .modal-content {
+  box-shadow: none;
+}
+.modal-dialog .form-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.modal-dialog .form-panel label {
+  text-align: start;
+  width: 100%;
+  margin-top: 0.8rem;
+}
+.modal-dialog .form-panel .reservation-time-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.modal-dialog .form-panel .reservation-time-box .time-input {
+  width: 45%;
+}
+.modal-dialog .form-panel .reservation-desc {
+  min-height: 6rem;
+  resize: none;
+}
+.modal-dialog .form-panel .submit-reservation-btn {
+  width: 100%;
+  margin-top: 1.5rem;
+  padding: 0.2rem 0.5rem;
+  outline: none;
+  border: none;
+  background: #001F3F;
+  color: #EBEBEB;
+}
+.modal-dialog .form-panel input,
+.modal-dialog .form-panel select,
+.modal-dialog .form-panel .reservation-desc {
+  width: 100%;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #001F3F;
+  padding: 0.2rem 0.5rem;
+  background: rgba(143, 143, 143, 0.14);
+  color: #001F3F;
+  transition: all 0.2s;
+}
+.modal-dialog .form-panel input:focus,
+.modal-dialog .form-panel select:focus,
+.modal-dialog .form-panel .reservation-desc:focus {
+  border-bottom: 1px solid #3D9970;
+  background-color: rgba(61, 153, 112, 0.2549019608);
+  transition: all 0.2s;
+}
+.modal-dialog .form-panel input[type=time]::-webkit-calendar-picker-indicator {
+  background-color: #001F3F;
+  border-radius: 5rem;
+}
+
+.reservation-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1rem;
+}
+.reservation-header .reservation-title {
+  color: #001F3F;
+}
+.reservation-header .new-reservation-btn {
+  background-color: #001F3F;
+  color: #EBEBEB;
+  outline: none;
+}
+.reservation-header .new-reservation-btn:hover, .reservation-header .new-reservation-btn:focus, .reservation-header .new-reservation-btn:active {
+  background-color: #3D9970;
+}
+
+.reservations-list .reservation-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1rem;
+  padding: 0.5rem;
+  transition: all 0.2s;
+}
+.reservations-list .reservation-item:focus, .reservations-list .reservation-item:hover {
+  background-color: rgba(61, 153, 112, 0.2);
+  transition: all 0.2s;
+}
+.reservations-list .reservation-item .item-text {
+  color: #001F3F;
+}
+.reservations-list .reservation-item .item-time {
+  color: #3D9970;
+}/*# sourceMappingURL=Home.css.map */

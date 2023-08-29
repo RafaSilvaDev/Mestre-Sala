@@ -1,0 +1,136 @@
+@import "./reset.scss";
+
+@mixin displayFlex($direction, $align, $justify) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: $align;
+  justify-content: $justify;
+}
+
+// reset primereact colors
+.modal-dialog {
+  max-height: 95%;
+  .p-dialog-header,
+  .p-dialog-content {
+    background: $primary-white;
+    color: $primary-blue;
+    border-bottom: none;
+
+    .p-dialog-header-icon {
+      color: $primary-blue;
+
+      &:focus,
+      &:active,
+      &:hover {
+        color: $primary-green !important;
+      }
+    }
+  }
+
+  .modal-content {
+    box-shadow: none;
+  }
+
+  .form-panel {
+    @include displayFlex(column, center, center);
+    width: 100%;
+
+    label {
+      text-align: start;
+      width: 100%;
+      margin-top: 0.8rem;
+    }
+
+    .reservation-time-box {
+      @include displayFlex(row, center, space-between);
+      width: 100%;
+
+      .time-input {
+        width: 45%;
+      }
+    }
+
+    .reservation-desc {
+      min-height: 6rem;
+      resize: none;
+    }
+
+    .submit-reservation-btn {
+      width: 100%;
+      margin-top: 1.5rem;
+      padding: 0.2rem 0.5rem;
+      outline: none;
+      border: none;
+      background: $primary-blue;
+      color: $primary-white;
+    }
+
+    input,
+    select,
+    .reservation-desc {
+      width: 100%;
+      outline: none;
+      border: none;
+      border-bottom: 1px solid $primary-blue;
+      padding: 0.2rem 0.5rem;
+      background: $secondary-white;
+      color: $primary-blue;
+      transition: all 0.2s;
+
+      &:focus {
+        border-bottom: 1px solid $primary-green;
+        background-color: $secondary-green;
+        transition: all 0.2s;
+      }
+    }
+
+    input[type="time"]::-webkit-calendar-picker-indicator {
+      background-color: $primary-blue;
+      border-radius: 5rem;
+    }
+  }
+}
+
+.reservation-header {
+  @include displayFlex(row, center, space-between);
+  margin: 1rem;
+
+  .reservation-title {
+    color: $primary-blue;
+  }
+
+  .new-reservation-btn {
+    background-color: $primary-blue;
+    color: $primary-white;
+    outline: none;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: $primary-green;
+    }
+  }
+}
+
+.reservations-list {
+  .reservation-item {
+    @include displayFlex(row, center, space-between);
+    margin: 1rem;
+    padding: 0.5rem;
+    transition: all 0.2s;
+
+    &:focus,
+    &:hover {
+      background-color: rgba($color: $primary-green, $alpha: 0.2);
+      transition: all 0.2s;
+    }
+
+    .item-text {
+      color: $primary-blue;
+    }
+
+    .item-time {
+      color: $primary-green;
+    }
+  }
+}

@@ -7,26 +7,28 @@
   justify-content: $justify;
 }
 
-.logo-text {
-  text-align: center;
-  font-size: 2rem;
-  font-style: normal;
-  line-height: normal;
-  color: $primary-white;
-  transition: all .2s;
-  outline: none;
 
-  &:hover,
-  &:focus {
-    color: $primary-green;
-  }
-}
 
 .navbar-body {
   position: sticky;
   right: 0;
   left: 0;
   top: 0;
+
+  .nav-menu .logo .logo-text {
+    text-align: center;
+    font-size: 2rem;
+    font-style: normal;
+    line-height: normal;
+    color: $primary-white;
+    transition: all .2s;
+    outline: none;
+  
+    &:hover,
+    &:focus {
+      color: $primary-green;
+    }
+  }
 }
 
 .nav-menu,

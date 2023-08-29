@@ -5,7 +5,13 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
-.logo-text {
+.navbar-body {
+  position: sticky;
+  right: 0;
+  left: 0;
+  top: 0;
+}
+.navbar-body .nav-menu .logo .logo-text {
   text-align: center;
   font-size: 2rem;
   font-style: normal;
@@ -14,15 +20,8 @@
   transition: all 0.2s;
   outline: none;
 }
-.logo-text:hover, .logo-text:focus {
+.navbar-body .nav-menu .logo .logo-text:hover, .navbar-body .nav-menu .logo .logo-text:focus {
   color: #3D9970;
-}
-
-.navbar-body {
-  position: sticky;
-  right: 0;
-  left: 0;
-  top: 0;
 }
 
 .nav-menu,
