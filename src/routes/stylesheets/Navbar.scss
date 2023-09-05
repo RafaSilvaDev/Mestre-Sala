@@ -14,6 +14,7 @@
   right: 0;
   left: 0;
   top: 0;
+  z-index: 10;
 
   .nav-menu .logo .logo-text {
     text-align: center;
@@ -34,6 +35,7 @@
 .nav-menu,
 .navbar-content {
   background: $primary-blue;
+  z-index: 10;
 }
 
 .navbar-content {

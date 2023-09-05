@@ -1,0 +1,71 @@
+{
+    "room" : [
+        {
+            "id":0,
+            "title":"Sala Roma",
+            "location":"Piso C, ao lado da cantina.",
+            "description":"A sala possui ar-condicionado, o controle se encontra na gaveta da mesa mais ao fundo. Possui 5 mesas de escritório com tomadas."
+        },
+        {
+            "id":1,
+            "title":"Sala Paris",
+            "location":"Piso A ao fundo do corredor.",
+            "description":"A sala possui uma mesa de jantar relativamente grande, com cadeiras empilhadas nas paredes para uso. Além de ar-condicionado."
+        },
+        {
+            "id":2,
+            "title":"Sala Tokyo",
+            "location":"Piso B, ao fim do corredor.",
+            "description":"A sala possui uma mesa circular para reuniões, com projetor e telão pronto para uso. Também possui ar-condicionado."
+        }
+    ],
+    "user" : [
+        {
+            "id":0,
+            "full-name":"Roger Rampazzo",
+            "email":"rojao@gmail.com",
+            "password":"Y2F0YXJpbmE="
+        },
+        {
+            "id":1,
+            "full-name":"José Henrique",
+            "email":"josias@gmail.com",
+            "password":"bGl2aWE="
+        },
+        {
+            "id":2,
+            "full-name":"Ana Clara Borges",
+            "email":"anoca@gmail.com",
+            "password":"bHVjYXM="
+        }
+    ],
+    "reservation" : [
+        {
+            "id":0,
+            "owner":0,
+            "room":2,
+            "title":"Visita de cliente",
+            "begin":"",
+            "end":"",
+            "description":"Recepção e negociação com cliente do Canadá para o desenvolvimento de uma solução digital."
+        },
+        {
+            "id":1,
+            "owner":1,
+            "room":0,
+            "title":"Ensaio de banda",
+            "begin":"",
+            "end":"",
+            "description":"Primeiro ensaio musical para show em Miami."
+        },
+        {
+            "id":2,
+            "owner":2,
+            "room":1,
+            "title":"Festa surpresa",
+            "begin":"",
+            "end":"",
+            "description":"Festa surpresa para o Lucas. Todos estão convidados! Lembrem-se que ele não pode saber disso..."
+        }
+    ]
+}

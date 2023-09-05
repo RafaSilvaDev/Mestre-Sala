@@ -1,10 +1,12 @@
 $primary-blue: #001F3F;
-$primary-gray: #838383;
+$primary-gray: #8f8f8f;
 $primary-green: #3D9970;
+$light-green: rgba($color: $primary-green, $alpha: 0.2);
 $dark-green: #2d7655;
 $secondary-green: #3d997041;
 $primary-white: #EBEBEB;
 $secondary-white: rgba(143, 143, 143, 0.14);
+$primary-red: #f44336;
 
 * {
     margin: 0;

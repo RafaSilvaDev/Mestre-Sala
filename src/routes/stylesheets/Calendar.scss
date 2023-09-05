@@ -1,7 +1,94 @@
 @import "./reset.scss";
 
+@mixin displayFlex($direction, $align, $justify) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: $align;
+  justify-content: $justify;
+}
+
 .calendar-body {
-    height: 400px;
+  @include displayFlex(column, center, center);
+  height: auto;
+  padding: 2rem 1rem;
+  width: 100%;
+  box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.25);
+
+  // calendar configs
+  .react-calendar {
     width: 100%;
-    background-color: $primary-green;
+    max-width: 700px;
+    border: none;
+    .react-calendar__navigation {
+      border-bottom: 1px solid $primary-green;
+      padding-bottom: 1rem;
+      button {
+        color: $primary-blue;
+        font-size: 2rem;
+      }
+      .react-calendar__navigation__arrow {
+        padding: 0 2rem;
+      }
+      span {
+        font-size: 1.5rem;
+      }
+      .react-calendar__navigation__next2-button,
+      .react-calendar__navigation__prev2-button {
+        display: none;
+      }
+    }
+    .react-calendar__tile {
+      padding: 1.2rem 0;
+    }
+    .react-calendar__tile--hasActive {
+        background: $light-green;
+    }
+    .react-calendar__tile--active {
+        background: $light-green;
+      }
+      .react-calendar__tile--now {
+        background: $primary-green;
+        color: $primary-white;
+
+        &:enabled:hover,
+        &:enabled:focus {
+          background: $primary-green;
+          color: $primary-white;
+        }
+      }
+    .react-calendar__month-view__days {
+      abbr {
+        font-size: 1.2rem;
+      }
+      .react-calendar__month-view__days__day {
+        color: $primary-blue;
+      }
+      .react-calendar__month-view__days__day--weekend {
+        color: $primary-red;
+      }
+      .react-calendar__month-view__days__day--neighboringMonth {
+        color: $primary-gray;
+      }
+      .react-calendar__tile--active {
+        background: $light-green;
+      }
+      .react-calendar__tile--now {
+        background: $primary-green;
+        color: $primary-white;
+
+        &:enabled:hover,
+        &:enabled:focus {
+          background: $primary-green;
+          color: $primary-white;
+        }
+      }
+    }
+    .react-calendar__year-view__months,
+    .react-calendar__decade-view,
+    .react-calendar__century-view {
+      button {
+        color: $primary-blue;
+      }
+    }
+  }
 }

@@ -7,7 +7,8 @@ import { Dialog } from "primereact/dialog";
 import { Button } from "primereact/button";
 
 const Home = () => {
-  const [visible, setVisible] = useState(false);
+  const [visibleNewReservation, setVisibleNewReservation] = useState(false);
+  const [visibleReservation, setVisibleReservation] = useState(false);
   return (
     <div className="home-body">
       <Navbar />
@@ -17,13 +18,13 @@ const Home = () => {
         <Button
           label="Nova reserva"
           className="new-reservation-btn"
-          onClick={() => setVisible(true)}
+          onClick={() => setVisibleNewReservation(true)}
         />
         <Dialog
           header="Nova Reserva"
-          visible={visible}
+          visible={visibleNewReservation}
           style={{ width: "30rem" }}
-          onHide={() => setVisible(false)}
+          onHide={() => setVisibleNewReservation(false)}
           className="modal-dialog"
         >
           <div className="modal-content">
@@ -67,13 +68,48 @@ const Home = () => {
         </Dialog>
       </div>
       <div className="reservations-list">
-        <div className="reservation-item">
+        <div
+          className="reservation-item"
+          onClick={() => setVisibleReservation(true)}
+        >
           <div className="item-text">
             <h2 className="item-title">Título 1</h2>
             <p className="item-subtitle">Subtitulo 1</p>
           </div>
           <h3 className="item-time">10:00 - 12:30</h3>
         </div>
+        <Dialog
+          header="Título 1"
+          visible={visibleReservation}
+          style={{ width: "30rem" }}
+          onHide={() => setVisibleReservation(false)}
+          className="modal-dialog"
+        >
+          <div className="modal-content">
+            <div className="false-input-text">
+              <p className="title">Quem Reservou</p>
+              <p className="false-input">João da Silva</p>
+            </div>
+            <div className="false-input-text">
+              <p className="title">Título</p>
+              <p className="false-input">Título 1</p>
+            </div>
+            <div className="false-input-time-box">
+              <div className="false-input-time">
+                <p className="title">Início</p>
+                <p className="false-input">00:00</p>
+              </div>
+              <div className="false-input-time">
+                <p className="title">Término</p>
+                <p className="false-input">00:00</p>
+              </div>
+            </div>
+            <div className="false-input-text-desc">
+              <p className="title">Término</p>
+              <p className="false-input-desc">00:00</p>
+            </div>
+          </div>
+        </Dialog>
         <div className="reservation-item">
           <div className="item-text">
             <h2 className="item-title">Título 2</h2>

@@ -100,9 +100,11 @@
   background-color: #001F3F;
   color: #EBEBEB;
   outline: none;
+  z-index: 0;
 }
 .reservation-header .new-reservation-btn:hover, .reservation-header .new-reservation-btn:focus, .reservation-header .new-reservation-btn:active {
   background-color: #3D9970;
+  color: #EBEBEB;
 }
 
 .reservations-list .reservation-item {
@@ -123,4 +125,20 @@
 }
 .reservations-list .reservation-item .item-time {
   color: #3D9970;
+}
+
+.modal-dialog .modal-content .false-input-text {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: flex-start;
+}
+.modal-dialog .modal-content .false-input-text .title {
+  font-weight: bold;
+}
+.modal-dialog .modal-content .false-input-text .false-input {
+  width: 100%;
+  border-bottom: 1px solid #001F3F;
 }/*# sourceMappingURL=Home.css.map */

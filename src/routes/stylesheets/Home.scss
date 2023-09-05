@@ -103,11 +103,13 @@
     background-color: $primary-blue;
     color: $primary-white;
     outline: none;
+    z-index: 0;
 
     &:hover,
     &:focus,
     &:active {
       background-color: $primary-green;
+      color: $primary-white;
     }
   }
 }
@@ -131,6 +133,23 @@
 
     .item-time {
       color: $primary-green;
+    }
+  }
+}
+
+.modal-dialog {
+  .modal-content {
+    .false-input-text {
+      width: 100%;
+      height: auto;
+      @include displayFlex(column, start, flex-start);
+      .title {
+        font-weight: bold;
+      }
+      .false-input {
+        width: 100%;
+        border-bottom: 1px solid $primary-blue;
+      }
     }
   }
 }

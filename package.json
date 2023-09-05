@@ -14,6 +14,7 @@
     "mdb-react-ui-kit": "^6.2.0",
     "primereact": "^9.6.2",
     "react": "^18.2.0",
+    "react-calendar": "^4.6.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.14.2",
     "sass": "^1.64.2"
