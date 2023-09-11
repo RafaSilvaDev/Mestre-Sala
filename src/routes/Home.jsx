@@ -105,7 +105,7 @@ const Home = () => {
               </div>
             </div>
             <div className="false-input-text-desc">
-              <p className="title">Término</p>
+              <p className="title">Descrição</p>
               <p className="false-input-desc">00:00</p>
             </div>
           </div>

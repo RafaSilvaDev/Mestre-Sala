@@ -6,6 +6,10 @@
 }
 
 .rooms-body .rooms-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   height: 100%;
 }
 .rooms-body .rooms-list .room-item {
@@ -13,7 +17,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
+  width: 70rem;
   margin-bottom: 1rem;
   padding: 1rem 1.5rem;
 }
@@ -35,4 +39,24 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.rooms-body .rooms-list .modal-dialog .modal-content .false-input-text {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: flex-start;
+}
+.rooms-body .rooms-list .modal-dialog .modal-content .false-input-text .title {
+  font-weight: bold;
+}
+.rooms-body .rooms-list .modal-dialog .modal-content .false-input-text .false-input {
+  width: 100%;
+  border-bottom: 1px solid #001F3F;
+}
+.rooms-body .rooms-list .modal-dialog .modal-content .false-input-text .false-input-desc {
+  width: 100%;
+  height: 9rem;
+  border-bottom: 1px solid #001F3F;
 }/*# sourceMappingURL=Rooms.css.map */

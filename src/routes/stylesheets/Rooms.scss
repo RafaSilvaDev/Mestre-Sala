@@ -8,11 +8,12 @@
 }
 
 .rooms-body .rooms-list {
+  @include displayFlex(column, center, center);
   height: 100%;
 
   .room-item {
     @include displayFlex(row, center, space-between);
-    width: 100%;
+    width: 70rem;
     margin-bottom: 1rem;
     padding: 1rem 1.5rem;
 
@@ -37,6 +38,28 @@
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+      }
+    }
+  }
+
+  .modal-dialog {
+    .modal-content {
+      .false-input-text {
+        width: 100%;
+        height: auto;
+        @include displayFlex(column, start, flex-start);
+        .title {
+          font-weight: bold;
+        }
+        .false-input {
+          width: 100%;
+          border-bottom: 1px solid $primary-blue;
+        }
+        .false-input-desc {
+          width: 100%;
+          height: 9rem;
+          border-bottom: 1px solid $primary-blue;
+        }
       }
     }
   }
