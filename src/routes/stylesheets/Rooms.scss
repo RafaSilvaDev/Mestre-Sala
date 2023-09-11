@@ -13,7 +13,8 @@
 
   .room-item {
     @include displayFlex(row, center, space-between);
-    width: 70rem;
+    width: 100%;
+    max-width: 60rem;
     margin-bottom: 1rem;
     padding: 1rem 1.5rem;
 
