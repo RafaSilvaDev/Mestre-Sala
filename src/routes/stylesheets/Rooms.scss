@@ -1,0 +1,43 @@
+@import "./reset.scss";
+
+@mixin displayFlex($direction, $align, $justify) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: $align;
+  justify-content: $justify;
+}
+
+.rooms-body .rooms-list {
+  height: 100%;
+
+  .room-item {
+    @include displayFlex(row, center, space-between);
+    width: 100%;
+    margin-bottom: 1rem;
+    padding: 1rem 1.5rem;
+
+    &:focus,
+    &:hover {
+      transition: all 0.2s;
+      background-color: $light-green;
+    }
+
+    .room-info .title,
+    .room-info .desc,
+    .room-icon i {
+      color: $primary-blue;
+    }
+
+    .room-info {
+      max-width: 75%;
+      overflow: hidden;
+
+      .desc {
+        width: auto;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+}

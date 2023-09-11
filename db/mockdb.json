@@ -37,6 +37,24 @@
             "full-name":"Ana Clara Borges",
             "email":"anoca@gmail.com",
             "password":"bHVjYXM="
+        },
+        {
+            "id":3,
+            "full-name":"Maria Júlia Borges",
+            "email":"majao@gmail.com",
+            "password":"bHVjYXM="
+        },
+        {
+            "id":4,
+            "full-name":"Daniel Botelho",
+            "email":"tucker@gmail.com",
+            "password":"bHVjYXM="
+        },
+        {
+            "id":5,
+            "full-name":"Guilherme Lima",
+            "email":"teenzao@gmail.com",
+            "password":"bHVjYXM="
         }
     ],
     "reservation" : [
