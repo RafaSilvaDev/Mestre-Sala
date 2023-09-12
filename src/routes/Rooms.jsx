@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import Navbar from "../components/Navbar";
-import "./stylesheets/Rooms.css"
+import "./stylesheets/Rooms.css";
 import { Dialog } from "primereact/dialog";
 import Data from "../../db/mockdb.json";
 
 const Rooms = () => {
   const rooms = Data.room;
-  const [visibleRooms, setVisibleRooms] = useState(Array(rooms.length).fill(false));
+  const [visibleRooms, setVisibleRooms] = useState(
+    Array(rooms.length).fill(false)
+  );
 
   const handleRoomClick = (index) => {
     const updatedVisibleRooms = [...visibleRooms];
@@ -20,22 +22,31 @@ const Rooms = () => {
       <div className="filter-box"></div>
       <div className="rooms-list">
         {rooms.map((room, index) => (
-          <><div key={index} className="room-item" onClick={() => handleRoomClick(index)}>
-            <div className="room-info">
-              <h2 className="title">{room.title}</h2>
-              <p className="desc">{room.description}</p>
+          <>
+            <div
+              key={index}
+              className="room-item"
+              onClick={() => handleRoomClick(index)}
+            >
+              <div className="room-info">
+                <h2 className="title">{room.title}</h2>
+                <p className="desc">{room.description}</p>
+              </div>
+              <div className="room-icon">
+                <i
+                  className="pi pi-chevron-right"
+                  style={{ fontSize: "1.3rem" }}
+                ></i>
+              </div>
             </div>
-            <div className="room-icon">
-              <i className="pi pi-chevron-right" style={{ fontSize: '1.3rem' }}></i>
-            </div>
-          </div><Dialog
-            key={`dialog-${index}`}
-            header={room.title}
-            visible={visibleRooms[index]}
-            style={{ width: "30rem" }}
-            onHide={() => handleRoomClick(index)}
-            className="modal-dialog"
-          >
+            <Dialog
+              key={`dialog-${index}`}
+              header={room.title}
+              visible={visibleRooms[index]}
+              style={{ width: "30rem" }}
+              onHide={() => handleRoomClick(index)}
+              className="modal-dialog"
+            >
               <div className="modal-content">
                 <div className="false-input-text">
                   <p className="title">Localização</p>
@@ -46,7 +57,8 @@ const Rooms = () => {
                   <p className="false-input-desc">{room.description}</p>
                 </div>
               </div>
-            </Dialog></>
+            </Dialog>
+          </>
         ))}
       </div>
     </div>

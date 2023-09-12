@@ -1,18 +1,43 @@
 import React, { useState } from "react";
-import Calendar from "../components/Calendar";
+import Calendar from "react-calendar";
 import Navbar from "../components/Navbar";
+import Data from "../../db/mockdb.json";
 import "./stylesheets/Home.css";
+import "react-calendar/dist/Calendar.css";
 
 import { Dialog } from "primereact/dialog";
 import { Button } from "primereact/button";
 
 const Home = () => {
+  const data = Data.reservation;
+  const todayDate = new Date().toISOString().substring(0, 10);
+  const [reservations, setReservations] = useState(
+    data.filter((reservation) => reservation.date.includes(todayDate))
+  );
+  const [visibleReservations, setVisibleReservations] = useState(
+    Array(reservations.length).fill(false)
+  );
   const [visibleNewReservation, setVisibleNewReservation] = useState(false);
-  const [visibleReservation, setVisibleReservation] = useState(false);
+
+  const handleDayClick = (value) => {
+    const newReservations = data.filter((reservation) =>
+      reservation.date.includes(value.toISOString())
+    );
+    setReservations(newReservations);
+  };
+
+  const handleReservationClick = (index) => {
+    const updatedVisibleReservations = [...visibleReservations];
+    updatedVisibleReservations[index] = !updatedVisibleReservations[index];
+    setVisibleReservations(updatedVisibleReservations);
+  };
+
   return (
     <div className="home-body">
       <Navbar />
-      <Calendar />
+      <div className="calendar-body">
+        <Calendar onClickDay={handleDayClick} />
+      </div>
       <div className="reservation-header">
         <h1 className="reservation-title">Reservas</h1>
         <Button
@@ -68,64 +93,63 @@ const Home = () => {
         </Dialog>
       </div>
       <div className="reservations-list">
-        <div
-          className="reservation-item"
-          onClick={() => setVisibleReservation(true)}
-        >
-          <div className="item-text">
-            <h2 className="item-title">Título 1</h2>
-            <p className="item-subtitle">Subtitulo 1</p>
-          </div>
-          <h3 className="item-time">10:00 - 12:30</h3>
-        </div>
-        <Dialog
-          header="Título 1"
-          visible={visibleReservation}
-          style={{ width: "30rem" }}
-          onHide={() => setVisibleReservation(false)}
-          className="modal-dialog"
-        >
-          <div className="modal-content">
-            <div className="false-input-text">
-              <p className="title">Quem Reservou</p>
-              <p className="false-input">João da Silva</p>
-            </div>
-            <div className="false-input-text">
-              <p className="title">Título</p>
-              <p className="false-input">Título 1</p>
-            </div>
-            <div className="false-input-time-box">
-              <div className="false-input-time">
-                <p className="title">Início</p>
-                <p className="false-input">00:00</p>
+        {!reservations.length ? (
+          <p className="empty-list-text">
+            Não há reservas para este dia.
+            <br />
+            Experimente fazer a sua!
+          </p>
+        ) : (
+          ""
+        )}
+
+        {reservations.map((reservation, index) => (
+          <>
+            <div
+              key={index}
+              className="reservation-item"
+              onClick={() => handleReservationClick(index)}
+            >
+              <div className="item-text">
+                <h2 className="item-title">{reservation.title}</h2>
+                <p className="item-subtitle">{reservation.description}</p>
               </div>
-              <div className="false-input-time">
-                <p className="title">Término</p>
-                <p className="false-input">00:00</p>
+              <h3 className="item-time">{reservation.begin} - {reservation.end}</h3>
+            </div>
+            <Dialog
+              header={reservation.room}
+              visible={visibleReservations[index]}
+              style={{ width: "30rem" }}
+              onHide={() => handleReservationClick(index)}
+              className="modal-dialog"
+            >
+              <div className="modal-content">
+                <div className="false-input-text">
+                  <p className="title">Quem Reservou</p>
+                  <p className="false-input">{reservation.owner}</p>
+                </div>
+                <div className="false-input-text">
+                  <p className="title">Título</p>
+                  <p className="false-input">{reservation.title}</p>
+                </div>
+                <div className="false-input-time-box">
+                  <div className="false-input-time">
+                    <p className="title">Início</p>
+                    <p className="false-input">{reservation.begin}</p>
+                  </div>
+                  <div className="false-input-time">
+                    <p className="title">Término</p>
+                    <p className="false-input">{reservation.end}</p>
+                  </div>
+                </div>
+                <div className="false-input-text">
+                  <p className="title">Descrição</p>
+                  <p className="false-input-desc">{reservation.description}</p>
+                </div>
               </div>
-            </div>
-            <div className="false-input-text-desc">
-              <p className="title">Descrição</p>
-              <p className="false-input-desc">00:00</p>
-            </div>
-          </div>
-        </Dialog>
-        <div className="reservation-item">
-          <div className="item-text">
-            <h2 className="item-title">Título 2</h2>
-            <p className="item-subtitle">Subtitulo 2</p>
-          </div>
-          <h3 className="item-time">10:00 - 12:30</h3>
-        </div>
-        <div className="reservation-item">
-          <div className="item-left">
-            <h2 className="item-title">Título 3</h2>
-            <p className="item-subtitle">Subtitulo 3</p>
-          </div>
-          <div className="item-right">
-            <h3 className="item-time">10:00 - 12:30</h3>
-          </div>
-        </div>
+            </Dialog>
+          </>
+        ))}
       </div>
     </div>
   );
