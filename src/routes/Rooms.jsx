@@ -1,11 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import "./stylesheets/Rooms.css";
 import { Dialog } from "primereact/dialog";
-import Data from "../../db/mockdb.json";
+import axios from "axios";
 
 const Rooms = () => {
-  const rooms = Data.room;
+  const [rooms, setRooms] = useState([]);
+  useEffect(() => {
+    axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
+    axios
+      .get("http://127.0.0.1:8080/room")
+      .then((response) => {
+        setRooms(response.data);
+      })
+      .catch(() => {
+        console.log("Algo deu errado na requisição ao server!");
+      });
+  }, []);
+
   const [visibleRooms, setVisibleRooms] = useState(
     Array(rooms.length).fill(false)
   );

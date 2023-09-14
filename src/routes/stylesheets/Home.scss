@@ -150,6 +150,9 @@
 
     .item-time {
       color: $primary-green;
+      font-size: 1.2rem;
+      text-wrap: nowrap;
+      max-width: 40%;
     }
   }
 }

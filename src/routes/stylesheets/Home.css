@@ -225,6 +225,9 @@
 }
 .reservations-list .reservation-item .item-time {
   color: #3D9970;
+  font-size: 1.2rem;
+  text-wrap: nowrap;
+  max-width: 40%;
 }
 
 .modal-dialog .modal-content .false-input-time-box {
