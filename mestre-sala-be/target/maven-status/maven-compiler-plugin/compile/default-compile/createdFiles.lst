@@ -1,0 +1,5 @@
+com\project\mestresala\mestresalabe\controller\RoomController.class
+com\project\mestresala\mestresalabe\model\Room.class
+com\project\mestresala\mestresalabe\responseHandler\ResponseHandler.class
+com\project\mestresala\mestresalabe\MestreSalaBeApplication.class
+com\project\mestresala\mestresalabe\roomRepository\RoomRepository.class
