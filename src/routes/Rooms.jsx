@@ -2,14 +2,13 @@ import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import "./stylesheets/Rooms.css";
 import { Dialog } from "primereact/dialog";
-import axios from "axios";
+import axios from "../servers/Api";
 
 const Rooms = () => {
   const [rooms, setRooms] = useState([]);
   useEffect(() => {
-    axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
     axios
-      .get("http://127.0.0.1:8080/room")
+      .get("/room")
       .then((response) => {
         setRooms(response.data);
       })

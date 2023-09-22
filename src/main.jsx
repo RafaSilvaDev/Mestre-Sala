@@ -8,6 +8,10 @@ import Login from "./routes/Login.jsx";
 import SignUp from "./routes/SignUp.jsx";
 import Home from "./routes/Home.jsx";
 import Rooms from "./routes/Rooms.jsx";
+import axios from 'axios';
+
+axios.defaults.baseURL = 'http://127.0.0.1:8080';
+axios.defaults.headers.common['Authorization'] = 'Bearer';
 
 const router = createBrowserRouter([
   {
