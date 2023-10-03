@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Calendar from "react-calendar";
 import Navbar from "../components/Navbar";
 import Data from "../../db/mockdb.json";
@@ -7,6 +7,7 @@ import "react-calendar/dist/Calendar.css";
 
 import { Dialog } from "primereact/dialog";
 import { Button } from "primereact/button";
+import axios from "../servers/Api";
 
 const Home = () => {
   const data = Data.reservation;
@@ -18,6 +19,34 @@ const Home = () => {
     Array(reservations.length).fill(false)
   );
   const [visibleNewReservation, setVisibleNewReservation] = useState(false);
+  const [newReservation, setNewReservation] = useState({
+    room: "",
+    title: "",
+    startTime: "",
+    endTime: "",
+    desc: "",
+  });
+
+  const handleReservationSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post("/reservation", newReservation);
+      setNewReservation({
+        room: "",
+        title: "",
+        startTime: "",
+        endTime: "",
+        desc: "",
+      });
+
+      setVisibleNewReservation(false);
+
+      // Atualizar a lista de reservas, se necessário
+      // Você pode fazer uma nova solicitação GET para obter a lista atualizada
+    } catch (error) {
+      console.error("Erro ao criar a reserva:", error);
+    }
+  };
 
   const handleDayClick = (value) => {
     const newReservations = data.filter((reservation) =>
@@ -53,9 +82,16 @@ const Home = () => {
           className="modal-dialog"
         >
           <div className="modal-content">
-            <form action="#" method="post" className="form-panel">
+            <form onSubmit={handleReservationSubmit} className="form-panel">
               <label htmlFor="reservation-room">Sala</label>
-              <select name="room" id="reservation-room">
+              <select
+                name="room"
+                id="reservation-room"
+                value={newReservation.room}
+                onChange={(e) =>
+                  setNewReservation({ ...newReservation, room: e.target.value })
+                }
+              >
                 <option value="sala-1">Sala 1</option>
                 <option value="sala-2">Sala 2</option>
                 <option value="sala-3">Sala 3</option>
@@ -87,7 +123,7 @@ const Home = () => {
                 id="reservation-desc"
                 className="reservation-desc"
               />
-              <button className="submit-reservation-btn">Reservar</button>
+              <button type="submit" className="submit-reservation-btn">Reservar</button>
             </form>
           </div>
         </Dialog>
@@ -114,7 +150,9 @@ const Home = () => {
                 <h2 className="item-title">{reservation.title}</h2>
                 <p className="item-subtitle">{reservation.description}</p>
               </div>
-              <h3 className="item-time">{reservation.begin} - {reservation.end}</h3>
+              <h3 className="item-time">
+                {reservation.begin} - {reservation.end}
+              </h3>
             </div>
             <Dialog
               header={reservation.room}

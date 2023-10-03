@@ -1,24 +1,26 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./stylesheets/Login.css";
 import axios from "../servers/Api";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [token, setToken] = useState("");
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post("/auth/login", {
-        email: email,
-        password: password,
+        email:email,
+        password:password,
       });
-      setToken(response.data.token);
-      console.log("Login feito! Aqui está o token: " + token);
+      localStorage.setItem("token", response.data.token);
+      console.log("Login feito! Aqui está o token: " + response.data.token);
+      navigate("/");
     } catch (error) {
-      console.log("Algo deu errado na requisição ao server!");
+      console.log("Algo deu errado na requisição ao server! Erro: " + error);
     }
   };
 
