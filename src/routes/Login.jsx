@@ -13,11 +13,21 @@ const Login = () => {
     e.preventDefault();
     try {
       const response = await axios.post("/auth/login", {
-        email:email,
-        password:password,
+        email: email,
+        password: password,
       });
       localStorage.setItem("token", response.data.token);
       console.log("Login feito! Aqui está o token: " + response.data.token);
+      axios
+        .get("/auth/user/" + email)
+        .then((response) => {
+          localStorage.setItem("userId", response.data);
+        })
+        .catch((error) => {
+          console.log(
+            "Algo deu errado na requisição ao server! Erro: " + error
+          );
+        });
       navigate("/");
     } catch (error) {
       console.log("Algo deu errado na requisição ao server! Erro: " + error);

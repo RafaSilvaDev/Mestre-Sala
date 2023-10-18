@@ -11,6 +11,7 @@ const Rooms = () => {
       .get("/room")
       .then((response) => {
         setRooms(response.data);
+        console.log("teste")
       })
       .catch(() => {
         console.log("Algo deu errado na requisição ao server!");

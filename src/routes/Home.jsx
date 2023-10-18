@@ -10,33 +10,72 @@ import { Button } from "primereact/button";
 import axios from "../servers/Api";
 
 const Home = () => {
-  const data = Data.reservation;
   const todayDate = new Date().toISOString().substring(0, 10);
-  const [reservations, setReservations] = useState(
-    data.filter((reservation) => reservation.date.includes(todayDate))
-  );
+  const [reservations, setReservations] = useState([]);
+  useEffect(() => {
+    axios
+      .get("/reservation/" + todayDate)
+      .then((response) => {
+        setReservations(response.data);
+        console.log(
+          "reservas coletadas para o dia " + todayDate + ": " + response.data
+        );
+      })
+      .catch(() => {
+        console.log("Algo deu errado no GET de reservas! data: " + todayDate);
+      });
+  }, []);
+  // data.filter((reservation) => reservation.date.includes(todayDate))
+  const [rooms, setRooms] = useState([]);
+  useEffect(() => {
+    axios
+      .get("/room")
+      .then((response) => {
+        setRooms(response.data);
+      })
+      .catch(() => {
+        console.log("Algo deu errado no GET de salas!");
+      });
+  }, []);
   const [visibleReservations, setVisibleReservations] = useState(
     Array(reservations.length).fill(false)
   );
   const [visibleNewReservation, setVisibleNewReservation] = useState(false);
   const [newReservation, setNewReservation] = useState({
-    room: "",
+    date: todayDate,
     title: "",
-    startTime: "",
-    endTime: "",
-    desc: "",
+    begin: "",
+    end: "",
+    description: "",
+    user: {
+      id: "",
+    },
+    room: {
+      id: "",
+    },
   });
 
   const handleReservationSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("/reservation", newReservation);
+      console.log(newReservation);
+      newReservation.user.id = localStorage.getItem("userId");
+      const config = {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      };
+      const response = await axios.post("/reservation", newReservation, config);
       setNewReservation({
-        room: "",
+        date: todayDate,
         title: "",
-        startTime: "",
-        endTime: "",
-        desc: "",
+        begin: "",
+        end: "",
+        description: "",
+        user: {
+          id: "",
+        },
+        room: {
+          id: "",
+        },
       });
 
       setVisibleNewReservation(false);
@@ -49,10 +88,25 @@ const Home = () => {
   };
 
   const handleDayClick = (value) => {
-    const newReservations = data.filter((reservation) =>
-      reservation.date.includes(value.toISOString())
-    );
-    setReservations(newReservations);
+
+    axios
+      .get("/reservation/" + value.toISOString().substring(0, 10))
+      .then((response) => {
+        setReservations(response.data);
+        console.log(
+          "reservas coletadas para o dia " +
+            value.toISOString().substring(0, 10) +
+            ": " +
+            JSON.stringify(response.data)
+        );
+      })
+      .catch(() => {
+        console.log(
+          "Algo deu errado no GET de reservas para o dia: " +
+            value.toISOString() +
+            "!"
+        );
+      });
   };
 
   const handleReservationClick = (index) => {
@@ -87,43 +141,86 @@ const Home = () => {
               <select
                 name="room"
                 id="reservation-room"
-                value={newReservation.room}
+                value={newReservation.room.id}
                 onChange={(e) =>
-                  setNewReservation({ ...newReservation, room: e.target.value })
+                  setNewReservation({
+                    ...newReservation,
+                    room: { id: e.target.value },
+                  })
                 }
+                required
               >
-                <option value="sala-1">Sala 1</option>
-                <option value="sala-2">Sala 2</option>
-                <option value="sala-3">Sala 3</option>
+                <option value="" disabled selected>
+                  -- Selecione uma opção --
+                </option>
+                {rooms.map((room, index) => (
+                  <option value={room.id} key={index}>
+                    {room.title}
+                  </option>
+                ))}
               </select>
-              <label htmlFor="reservation-title"> Título</label>
-              <input type="text" name="title" id="reservation-title" />
+              <label htmlFor="reservation-title">Título</label>
+              <input
+                type="text"
+                name="title"
+                id="reservation-title"
+                value={newReservation.title}
+                onChange={(e) =>
+                  setNewReservation({
+                    ...newReservation,
+                    title: e.target.value,
+                  })
+                }
+              />
               <div className="reservation-time-box">
                 <div className="time-input">
-                  <label htmlFor="reservation-start-time"> Início</label>
+                  <label htmlFor="reservation-start-time">Início</label>
                   <input
                     type="time"
-                    name="start-time"
+                    name="begin"
                     id="reservation-start-time"
+                    value={newReservation.begin}
+                    onChange={(e) =>
+                      setNewReservation({
+                        ...newReservation,
+                        begin: e.target.value,
+                      })
+                    }
                   />
                 </div>
                 <div className="time-input">
-                  <label htmlFor="reservation-end-time"> Término</label>
+                  <label htmlFor="reservation-end-time">Término</label>
                   <input
                     type="time"
-                    name="end-time"
+                    name="end"
                     id="reservation-end-time"
+                    value={newReservation.end}
+                    onChange={(e) =>
+                      setNewReservation({
+                        ...newReservation,
+                        end: e.target.value,
+                      })
+                    }
                   />
                 </div>
               </div>
-              <label htmlFor="reservation-desc"> Descrição</label>
+              <label htmlFor="reservation-desc">Descrição</label>
               <textarea
                 type="text"
-                name="desc"
+                name="description"
                 id="reservation-desc"
                 className="reservation-desc"
+                value={newReservation.description}
+                onChange={(e) =>
+                  setNewReservation({
+                    ...newReservation,
+                    description: e.target.value,
+                  })
+                }
               />
-              <button type="submit" className="submit-reservation-btn">Reservar</button>
+              <button type="submit" className="submit-reservation-btn">
+                Reservar
+              </button>
             </form>
           </div>
         </Dialog>
@@ -155,7 +252,7 @@ const Home = () => {
               </h3>
             </div>
             <Dialog
-              header={reservation.room}
+              header={reservation.room.title}
               visible={visibleReservations[index]}
               style={{ width: "30rem" }}
               onHide={() => handleReservationClick(index)}
@@ -164,7 +261,7 @@ const Home = () => {
               <div className="modal-content">
                 <div className="false-input-text">
                   <p className="title">Quem Reservou</p>
-                  <p className="false-input">{reservation.owner}</p>
+                  <p className="false-input">{reservation.user.fullName}</p>
                 </div>
                 <div className="false-input-text">
                   <p className="title">Título</p>
