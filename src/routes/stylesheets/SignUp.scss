@@ -72,6 +72,11 @@
             border-bottom: 1px solid $primary-green;
             background-color: $secondary-green;
           }
+
+          &::placeholder {
+            color: $secondary-gray;
+            font-style: italic
+          }
         }
 
         .signup-btn {

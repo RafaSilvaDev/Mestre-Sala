@@ -28,7 +28,7 @@ const Login = () => {
             "Algo deu errado na requisição ao server! Erro: " + error
           );
         });
-      navigate("/");
+      navigate("/home");
     } catch (error) {
       console.log("Algo deu errado na requisição ao server! Erro: " + error);
     }

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./stylesheets/SignUp.css";
 import axios from "../servers/Api";
 
@@ -8,6 +8,7 @@ const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleSignUp = async (e) => {
     e.preventDefault();
@@ -24,7 +25,7 @@ const SignUp = () => {
         role: "USER"
       });
       console.log("Usuário cadastrado com sucesso!");
-      // Redirecionar para a página de login ou tomar outra ação adequada.
+      navigate("/");
     } catch (error) {
       console.log("Algo deu errado na requisição ao servidor!");
     }
@@ -86,7 +87,7 @@ const SignUp = () => {
             <button type="submit" className="signup-btn">
               Cadastre-se
             </button>
-            <Link to="/login" className="sign-up-link">
+            <Link to="/" className="sign-up-link">
               Já possui acesso? Entre
             </Link>
           </form>

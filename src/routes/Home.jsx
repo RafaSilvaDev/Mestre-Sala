@@ -1,31 +1,21 @@
 import React, { useState, useEffect } from "react";
 import Calendar from "react-calendar";
 import Navbar from "../components/Navbar";
-import Data from "../../db/mockdb.json";
 import "./stylesheets/Home.css";
 import "react-calendar/dist/Calendar.css";
 
 import { Dialog } from "primereact/dialog";
 import { Button } from "primereact/button";
-import axios from "../servers/Api";
+import axios, { getReservationsByDate } from "../servers/Api";
 
 const Home = () => {
   const todayDate = new Date().toISOString().substring(0, 10);
+  const [selectedDay, setSelectedDay] = useState();
   const [reservations, setReservations] = useState([]);
   useEffect(() => {
-    axios
-      .get("/reservation/" + todayDate)
-      .then((response) => {
-        setReservations(response.data);
-        console.log(
-          "reservas coletadas para o dia " + todayDate + ": " + response.data
-        );
-      })
-      .catch(() => {
-        console.log("Algo deu errado no GET de reservas! data: " + todayDate);
-      });
+    setReservations(getReservationsByDate(todayDate));
   }, []);
-  // data.filter((reservation) => reservation.date.includes(todayDate))
+
   const [rooms, setRooms] = useState([]);
   useEffect(() => {
     axios
@@ -42,7 +32,7 @@ const Home = () => {
   );
   const [visibleNewReservation, setVisibleNewReservation] = useState(false);
   const [newReservation, setNewReservation] = useState({
-    date: todayDate,
+    date: "",
     title: "",
     begin: "",
     end: "",
@@ -60,12 +50,13 @@ const Home = () => {
     try {
       console.log(newReservation);
       newReservation.user.id = localStorage.getItem("userId");
+      newReservation.date = selectedDay;
       const config = {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       };
       const response = await axios.post("/reservation", newReservation, config);
       setNewReservation({
-        date: todayDate,
+        date: "",
         title: "",
         begin: "",
         end: "",
@@ -88,7 +79,7 @@ const Home = () => {
   };
 
   const handleDayClick = (value) => {
-
+    setSelectedDay(value.toISOString().substring(0, 10));
     axios
       .get("/reservation/" + value.toISOString().substring(0, 10))
       .then((response) => {
@@ -233,58 +224,58 @@ const Home = () => {
             Experimente fazer a sua!
           </p>
         ) : (
-          ""
+          reservations.map((reservation, index) => (
+            <>
+              <div
+                key={index}
+                className="reservation-item"
+                onClick={() => handleReservationClick(index)}
+              >
+                <div className="item-text">
+                  <h2 className="item-title">{reservation.title}</h2>
+                  <p className="item-subtitle">{reservation.description}</p>
+                </div>
+                <h3 className="item-time">
+                  {reservation.begin} - {reservation.end}
+                </h3>
+              </div>
+              <Dialog
+                header={reservation.room.title}
+                visible={visibleReservations[index]}
+                style={{ width: "30rem" }}
+                onHide={() => handleReservationClick(index)}
+                className="modal-dialog"
+              >
+                <div className="modal-content">
+                  <div className="false-input-text">
+                    <p className="title">Quem Reservou</p>
+                    <p className="false-input">{reservation.user.fullName}</p>
+                  </div>
+                  <div className="false-input-text">
+                    <p className="title">Título</p>
+                    <p className="false-input">{reservation.title}</p>
+                  </div>
+                  <div className="false-input-time-box">
+                    <div className="false-input-time">
+                      <p className="title">Início</p>
+                      <p className="false-input">{reservation.begin}</p>
+                    </div>
+                    <div className="false-input-time">
+                      <p className="title">Término</p>
+                      <p className="false-input">{reservation.end}</p>
+                    </div>
+                  </div>
+                  <div className="false-input-text">
+                    <p className="title">Descrição</p>
+                    <p className="false-input-desc">
+                      {reservation.description}
+                    </p>
+                  </div>
+                </div>
+              </Dialog>
+            </>
+          ))
         )}
-
-        {reservations.map((reservation, index) => (
-          <>
-            <div
-              key={index}
-              className="reservation-item"
-              onClick={() => handleReservationClick(index)}
-            >
-              <div className="item-text">
-                <h2 className="item-title">{reservation.title}</h2>
-                <p className="item-subtitle">{reservation.description}</p>
-              </div>
-              <h3 className="item-time">
-                {reservation.begin} - {reservation.end}
-              </h3>
-            </div>
-            <Dialog
-              header={reservation.room.title}
-              visible={visibleReservations[index]}
-              style={{ width: "30rem" }}
-              onHide={() => handleReservationClick(index)}
-              className="modal-dialog"
-            >
-              <div className="modal-content">
-                <div className="false-input-text">
-                  <p className="title">Quem Reservou</p>
-                  <p className="false-input">{reservation.user.fullName}</p>
-                </div>
-                <div className="false-input-text">
-                  <p className="title">Título</p>
-                  <p className="false-input">{reservation.title}</p>
-                </div>
-                <div className="false-input-time-box">
-                  <div className="false-input-time">
-                    <p className="title">Início</p>
-                    <p className="false-input">{reservation.begin}</p>
-                  </div>
-                  <div className="false-input-time">
-                    <p className="title">Término</p>
-                    <p className="false-input">{reservation.end}</p>
-                  </div>
-                </div>
-                <div className="false-input-text">
-                  <p className="title">Descrição</p>
-                  <p className="false-input-desc">{reservation.description}</p>
-                </div>
-              </div>
-            </Dialog>
-          </>
-        ))}
       </div>
     </div>
   );

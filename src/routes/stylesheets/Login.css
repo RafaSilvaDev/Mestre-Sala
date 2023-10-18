@@ -77,6 +77,15 @@
   border-bottom: 1px solid #3D9970;
   background-color: rgba(61, 153, 112, 0.2549019608);
 }
+.content-box .form-panel form .user-input::-moz-placeholder, .content-box .form-panel form .passwd-input::-moz-placeholder {
+  color: #a7a7a7;
+  font-style: italic;
+}
+.content-box .form-panel form .user-input::placeholder,
+.content-box .form-panel form .passwd-input::placeholder {
+  color: #a7a7a7;
+  font-style: italic;
+}
 .content-box .form-panel form .login-btn {
   width: 100%;
   padding: 0.7rem;

@@ -82,6 +82,17 @@
   border-bottom: 1px solid #3D9970;
   background-color: rgba(61, 153, 112, 0.2549019608);
 }
+.signup-page .content-box .form-panel form .fullname-input::-moz-placeholder, .signup-page .content-box .form-panel form .user-input::-moz-placeholder, .signup-page .content-box .form-panel form .passwd-input::-moz-placeholder, .signup-page .content-box .form-panel form .confirm-passwd-input::-moz-placeholder {
+  color: #a7a7a7;
+  font-style: italic;
+}
+.signup-page .content-box .form-panel form .fullname-input::placeholder,
+.signup-page .content-box .form-panel form .user-input::placeholder,
+.signup-page .content-box .form-panel form .passwd-input::placeholder,
+.signup-page .content-box .form-panel form .confirm-passwd-input::placeholder {
+  color: #a7a7a7;
+  font-style: italic;
+}
 .signup-page .content-box .form-panel form .signup-btn {
   width: 100%;
   padding: 0.7rem;
