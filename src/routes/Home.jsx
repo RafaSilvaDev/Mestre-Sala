@@ -6,14 +6,22 @@ import "react-calendar/dist/Calendar.css";
 
 import { Dialog } from "primereact/dialog";
 import { Button } from "primereact/button";
-import axios, { getReservationsByDate } from "../servers/Api";
+import axios, {
+  getReservationsByDate,
+  getAllRooms,
+  createReservation,
+} from "../servers/Api";
 
 const Home = () => {
   const todayDate = new Date().toISOString().substring(0, 10);
   const [selectedDay, setSelectedDay] = useState();
   const [reservations, setReservations] = useState([]);
   useEffect(() => {
-    setReservations(getReservationsByDate(todayDate));
+    const fetchData = async () => {
+      setReservations(await getReservationsByDate(todayDate));
+    }
+    fetchData().catch(console.error)
+    setSelectedDay(todayDate);
   }, []);
 
   const [rooms, setRooms] = useState([]);
@@ -54,7 +62,7 @@ const Home = () => {
       const config = {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       };
-      const response = await axios.post("/reservation", newReservation, config);
+      await createReservation(newReservation, config);
       setNewReservation({
         date: "",
         title: "",
@@ -70,34 +78,16 @@ const Home = () => {
       });
 
       setVisibleNewReservation(false);
-
-      // Atualizar a lista de reservas, se necessário
-      // Você pode fazer uma nova solicitação GET para obter a lista atualizada
+    const updatedReservations = await getReservationsByDate(selectedDay);
+    setReservations(updatedReservations);
     } catch (error) {
       console.error("Erro ao criar a reserva:", error);
     }
   };
 
-  const handleDayClick = (value) => {
+  const handleDayClick = async (value) => {
     setSelectedDay(value.toISOString().substring(0, 10));
-    axios
-      .get("/reservation/" + value.toISOString().substring(0, 10))
-      .then((response) => {
-        setReservations(response.data);
-        console.log(
-          "reservas coletadas para o dia " +
-            value.toISOString().substring(0, 10) +
-            ": " +
-            JSON.stringify(response.data)
-        );
-      })
-      .catch(() => {
-        console.log(
-          "Algo deu errado no GET de reservas para o dia: " +
-            value.toISOString() +
-            "!"
-        );
-      });
+    setReservations(await getReservationsByDate(selectedDay));
   };
 
   const handleReservationClick = (index) => {
