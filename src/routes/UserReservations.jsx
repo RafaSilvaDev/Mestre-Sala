@@ -5,6 +5,7 @@ import { Dialog } from "primereact/dialog";
 import axios, {
   getReservationsByUserId,
   updateReservation,
+  deleteReservation
 } from "../servers/Api";
 
 const UserReservations = () => {
@@ -34,6 +35,9 @@ const UserReservations = () => {
     Array(userReservations.length).fill(false)
   );
 
+  const [visibleReservationsOnDelete, setVisibleReservationsOnDelete] =
+    useState(Array(userReservations.length).fill(false));
+
   function formatDate(inputDate) {
     const months = [
       "Jan.",
@@ -57,33 +61,100 @@ const UserReservations = () => {
 
     return `${day} de ${month} de ${year}`;
   }
-  const [reservationToUpdate, setReservationToUpdate] = useState();
+  const [reservationToManipulate, setReservationToManipulate] = useState({
+    date: "",
+    title: "",
+    begin: "",
+    end: "",
+    description: "",
+    user: {
+      id: "",
+    },
+    room: {
+      id: "",
+    },
+  });
+
+  function closeFormDialog(index) {
+    const updatedVisibleReservations = [...visibleReservations];
+    updatedVisibleReservations[index] = false;
+    setVisibleReservations(updatedVisibleReservations);
+  }
+
+  function closeDeleteDialog(index) {
+    const updatedVisibleDeleteReservations = [...visibleReservationsOnDelete];
+    updatedVisibleDeleteReservations[index] = false;
+    setVisibleReservationsOnDelete(updatedVisibleDeleteReservations);
+  }
 
   const handleReservationClick = (index) => {
     const updatedVisibleReservations = [...visibleReservations];
     updatedVisibleReservations[index] = !updatedVisibleReservations[index];
     setVisibleReservations(updatedVisibleReservations);
-    setReservationToUpdate(userReservations[index]);
-    console.log(reservationToUpdate);
+    setReservationToManipulate(userReservations[index]);
+  };
+
+  const handleDeleteReservationClick = (index) => {
+    closeFormDialog(index)
+    const updatedVisibleDeleteReservations = [...visibleReservationsOnDelete];
+    updatedVisibleDeleteReservations[index] =
+      !updatedVisibleDeleteReservations[index];
+    setVisibleReservationsOnDelete(updatedVisibleDeleteReservations);
+    setReservationToManipulate(userReservations[index]);
   };
 
   const handleReservationSubmit = async (e, index) => {
     e.preventDefault();
+    setReservationToManipulate(userReservations[index]);
     try {
       const config = {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       };
-      await updateReservation(index + 1, reservationToUpdate, config);
-      setVisibleReservations(([index] = false));
+      await updateReservation(
+        reservationToManipulate.id,
+        reservationToManipulate,
+        config
+      );
+
+      // Fechar o Dialog após o envio do formulário
+      closeFormDialog(index)
+
+      setReservationToManipulate(null);
 
       const updatedReservations = await getReservationsByUserId(
         localStorage.getItem("userId")
       );
       setUserReservations(updatedReservations);
     } catch (error) {
-      console.error("Erro ao atualizar a reserva:", error);
+      console.error("Erro ao atualizar a reserva: ", error);
     }
   };
+
+  const handleConfirmDeleteReservation = async (index) => {
+    setReservationToManipulate(userReservations[index]);
+    try {
+      const config = {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      };
+      await deleteReservation(
+        reservationToManipulate.id,
+        config
+      );
+
+      // Fechar o Dialog após o envio do formulário
+      closeDeleteDialog(index)
+
+      setReservationToManipulate(null);
+
+      const updatedReservations = await getReservationsByUserId(
+        localStorage.getItem("userId")
+      );
+      setUserReservations(updatedReservations);
+    } catch (error) {
+      console.error("Erro ao apagar a reserva: ", error);
+    }
+  }
+
   return (
     <div className="user-reservations-body">
       <Navbar />
@@ -98,7 +169,7 @@ const UserReservations = () => {
             >
               <div className="reservation-info">
                 <h2 className="title">{reservation.room.title}</h2>
-                <p className="desc">{reservation.description}</p>
+                <p className="desc">{reservation.title}</p>
               </div>
               <div className="reservation-datetime">
                 <h3 className="begin-end">
@@ -116,15 +187,22 @@ const UserReservations = () => {
               className="modal-dialog"
             >
               <div className="modal-content">
-                <form onSubmit={handleReservationSubmit} className="form-panel">
+                <form
+                  onSubmit={(e) => handleReservationSubmit(e, index)}
+                  className="form-panel"
+                >
                   <label htmlFor="reservation-room">Sala</label>
                   <select
                     name="room"
                     id="reservation-room"
-                    value="teste"
+                    value={
+                      reservationToManipulate && reservationToManipulate.room
+                        ? reservationToManipulate.room.id
+                        : ""
+                    }
                     onChange={(e) =>
-                      setReservationToUpdate({
-                        ...reservationToUpdate,
+                      setReservationToManipulate({
+                        ...reservationToManipulate,
                         room: { id: e.target.value },
                       })
                     }
@@ -147,10 +225,10 @@ const UserReservations = () => {
                     type="text"
                     name="title"
                     id="reservation-title"
-                    value={reservation.title}
+                    value={reservationToManipulate ? reservationToManipulate.title : ""}
                     onChange={(e) =>
-                      setReservationToUpdate({
-                        ...reservationToUpdate,
+                      setReservationToManipulate({
+                        ...reservationToManipulate,
                         title: e.target.value,
                       })
                     }
@@ -162,10 +240,12 @@ const UserReservations = () => {
                         type="time"
                         name="begin"
                         id="reservation-start-time"
-                        value={reservation.begin}
+                        value={
+                          reservationToManipulate ? reservationToManipulate.begin : ""
+                        }
                         onChange={(e) =>
-                          setReservationToUpdate({
-                            ...newResreservationToUpdateervation,
+                          setReservationToManipulate({
+                            ...reservationToManipulate,
                             begin: e.target.value,
                           })
                         }
@@ -177,10 +257,12 @@ const UserReservations = () => {
                         type="time"
                         name="end"
                         id="reservation-end-time"
-                        value={reservation.end}
+                        value={
+                          reservationToManipulate ? reservationToManipulate.end : ""
+                        }
                         onChange={(e) =>
-                          setReservationToUpdate({
-                            ...reservationToUpdate,
+                          setReservationToManipulate({
+                            ...reservationToManipulate,
                             end: e.target.value,
                           })
                         }
@@ -193,10 +275,12 @@ const UserReservations = () => {
                     name="description"
                     id="reservation-desc"
                     className="reservation-desc"
-                    value={reservation.description}
+                    value={
+                      reservationToManipulate ? reservationToManipulate.description : ""
+                    }
                     onChange={(e) =>
-                      setReservationToUpdate({
-                        ...reservationToUpdate,
+                      setReservationToManipulate({
+                        ...reservationToManipulate,
                         description: e.target.value,
                       })
                     }
@@ -204,8 +288,26 @@ const UserReservations = () => {
                   <button type="submit" className="submit-reservation-btn">
                     Reservar
                   </button>
+                  <button className="delete-reservation-btn" onClick={() => handleDeleteReservationClick(index)}>
+                    Excluir reserva
+                  </button>
                 </form>
               </div>
+            </Dialog>
+            <Dialog
+              key={`delete-dialog-${index}`}
+              header="Apagar reserva"
+              visible={visibleReservationsOnDelete[index]}
+              style={{ width: "20rem" }}
+              onHide={() => handleDeleteReservationClick(index)}
+              className="modal-dialog"
+            >
+              <h3 className="text">
+                Tem certeza que deseja excluir esta reserva?
+              </h3>
+              <p className="reservation-to-delete">{reservation.title}</p>
+              <button className="confirm-delete" onClick={() => handleConfirmDeleteReservation(index)}>Apagar</button>
+              <button className="cancel-delete" onClick={() => handleDeleteReservationClick(index)}>Cancelar</button>
             </Dialog>
           </>
         ))}

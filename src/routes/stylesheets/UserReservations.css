@@ -44,23 +44,13 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.user-reservations-body .user-reservations-list .modal-dialog .modal-content .false-input-text {
+
+button.delete-reservation-btn {
   width: 100%;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  justify-content: flex-start;
-}
-.user-reservations-body .user-reservations-list .modal-dialog .modal-content .false-input-text .title {
-  font-weight: bold;
-}
-.user-reservations-body .user-reservations-list .modal-dialog .modal-content .false-input-text .false-input {
-  width: 100%;
-  border-bottom: 1px solid #001F3F;
-}
-.user-reservations-body .user-reservations-list .modal-dialog .modal-content .false-input-text .false-input-desc {
-  width: 100%;
-  height: 9rem;
-  border-bottom: 1px solid #001F3F;
+  margin-top: 1rem;
+  padding: 0.2rem 0.5rem;
+  outline: none;
+  border: 1px solid #001F3F;
+  background: #EBEBEB;
+  color: #001F3F;
 }/*# sourceMappingURL=UserReservations.css.map */
