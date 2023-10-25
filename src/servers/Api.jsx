@@ -17,6 +17,16 @@ export const getReservationsByDate = async (date) => {
   }
 };
 
+export const getReservationsByUserId = async (userId) => {
+  try {
+    const response = await api.get(`/reservation/user/${userId}`);
+    return response.data;
+  } catch (error) {
+    console.error("Erro na solicitação GET de reservas: ", error);
+    throw error; 
+  }
+};
+
 export const createReservation = async (reservation, config) => {
   try {
     await api.post("/reservation", reservation, config);
@@ -25,6 +35,15 @@ export const createReservation = async (reservation, config) => {
     throw error; 
   }
 };
+
+export const updateReservation = async (id, reservation, config) => {
+  try {
+    await api.put("/reservation/" + id, reservation, config)
+  } catch (error) {
+    console.error("Erro na solicitação PUT de reservas: ", error);
+    throw error;
+  }
+}
 
 export const getAllRooms = async () => {
   try {

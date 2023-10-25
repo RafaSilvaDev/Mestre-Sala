@@ -1,0 +1,66 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+.user-reservations-body .user-reservations-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+.user-reservations-body .user-reservations-list .user-reservation-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 60rem;
+  margin-bottom: 1rem;
+  padding: 1rem 1.5rem;
+}
+.user-reservations-body .user-reservations-list .user-reservation-item:focus, .user-reservations-body .user-reservations-list .user-reservation-item:hover {
+  transition: all 0.2s;
+  background-color: rgba(61, 153, 112, 0.2);
+}
+.user-reservations-body .user-reservations-list .user-reservation-item .reservation-info .title,
+.user-reservations-body .user-reservations-list .user-reservation-item .reservation-info .desc,
+.user-reservations-body .user-reservations-list .user-reservation-item .reservation-datetime .date {
+  color: #001F3F;
+}
+.user-reservations-body .user-reservations-list .user-reservation-item .reservation-datetime .begin-end {
+  color: #3D9970;
+}
+.user-reservations-body .user-reservations-list .user-reservation-item .reservation-info {
+  max-width: 55%;
+  overflow: hidden;
+}
+.user-reservations-body .user-reservations-list .user-reservation-item .reservation-info .desc {
+  width: auto;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.user-reservations-body .user-reservations-list .modal-dialog .modal-content .false-input-text {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: flex-start;
+}
+.user-reservations-body .user-reservations-list .modal-dialog .modal-content .false-input-text .title {
+  font-weight: bold;
+}
+.user-reservations-body .user-reservations-list .modal-dialog .modal-content .false-input-text .false-input {
+  width: 100%;
+  border-bottom: 1px solid #001F3F;
+}
+.user-reservations-body .user-reservations-list .modal-dialog .modal-content .false-input-text .false-input-desc {
+  width: 100%;
+  height: 9rem;
+  border-bottom: 1px solid #001F3F;
+}/*# sourceMappingURL=UserReservations.css.map */

@@ -40,7 +40,7 @@ const Navbar = () => {
       <MDBCollapse show={showAnimated2}>
         <div className="navbar-content">
           <Link className="navbar-link" to="/home">Home</Link>
-          <Link className="navbar-link" to="">Minhas Reservas</Link>
+          <Link className="navbar-link" to="/my-reservations">Minhas Reservas</Link>
           <Link className="navbar-link" to="/rooms">Salas</Link>
           <Link className="navbar-link" to="/">Sair</Link>
         </div>
