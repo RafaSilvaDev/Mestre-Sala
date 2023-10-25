@@ -5,8 +5,9 @@ import { Dialog } from "primereact/dialog";
 import axios, {
   getReservationsByUserId,
   updateReservation,
-  deleteReservation
+  deleteReservation,
 } from "../servers/Api";
+import { Link } from "react-router-dom";
 
 const UserReservations = () => {
   const [userReservations, setUserReservations] = useState([]);
@@ -95,7 +96,6 @@ const UserReservations = () => {
   };
 
   const handleDeleteReservationClick = (index) => {
-    closeFormDialog(index)
     const updatedVisibleDeleteReservations = [...visibleReservationsOnDelete];
     updatedVisibleDeleteReservations[index] =
       !updatedVisibleDeleteReservations[index];
@@ -117,7 +117,7 @@ const UserReservations = () => {
       );
 
       // Fechar o Dialog após o envio do formulário
-      closeFormDialog(index)
+      closeFormDialog(index);
 
       setReservationToManipulate(null);
 
@@ -136,13 +136,10 @@ const UserReservations = () => {
       const config = {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       };
-      await deleteReservation(
-        reservationToManipulate.id,
-        config
-      );
+      await deleteReservation(reservationToManipulate.id, config);
 
       // Fechar o Dialog após o envio do formulário
-      closeDeleteDialog(index)
+      closeDeleteDialog(index);
 
       setReservationToManipulate(null);
 
@@ -153,164 +150,195 @@ const UserReservations = () => {
     } catch (error) {
       console.error("Erro ao apagar a reserva: ", error);
     }
-  }
+  };
 
   return (
     <div className="user-reservations-body">
       <Navbar />
       <div className="filter-box"></div>
       <div className="user-reservations-list">
-        {userReservations.map((reservation, index) => (
-          <>
-            <div
-              key={index}
-              className="user-reservation-item"
-              onClick={() => handleReservationClick(index)}
-            >
-              <div className="reservation-info">
-                <h2 className="title">{reservation.room.title}</h2>
-                <p className="desc">{reservation.title}</p>
+        {userReservations.length ? (
+          userReservations.map((reservation, index) => (
+            <>
+              <div
+                key={index}
+                className="user-reservation-item"
+                onClick={() => handleReservationClick(index)}
+              >
+                <div className="reservation-info">
+                  <h2 className="title">{reservation.room.title}</h2>
+                  <p className="desc">{reservation.title}</p>
+                </div>
+                <div className="reservation-datetime">
+                  <h3 className="begin-end">
+                    {reservation.begin} - {reservation.end}
+                  </h3>
+                  <p className="date">{formatDate(reservation.date)}</p>
+                </div>
               </div>
-              <div className="reservation-datetime">
-                <h3 className="begin-end">
-                  {reservation.begin} - {reservation.end}
-                </h3>
-                <p className="date">{formatDate(reservation.date)}</p>
-              </div>
-            </div>
-            <Dialog
-              key={`dialog-${index}`}
-              header="Editar reserva"
-              visible={visibleReservations[index]}
-              style={{ width: "30rem" }}
-              onHide={() => handleReservationClick(index)}
-              className="modal-dialog"
-            >
-              <div className="modal-content">
-                <form
-                  onSubmit={(e) => handleReservationSubmit(e, index)}
-                  className="form-panel"
-                >
-                  <label htmlFor="reservation-room">Sala</label>
-                  <select
-                    name="room"
-                    id="reservation-room"
-                    value={
-                      reservationToManipulate && reservationToManipulate.room
-                        ? reservationToManipulate.room.id
-                        : ""
-                    }
-                    onChange={(e) =>
-                      setReservationToManipulate({
-                        ...reservationToManipulate,
-                        room: { id: e.target.value },
-                      })
-                    }
-                    required
+              <Dialog
+                key={`dialog-${index}`}
+                header="Editar reserva"
+                visible={visibleReservations[index]}
+                style={{ width: "30rem" }}
+                onHide={() => handleReservationClick(index)}
+                className="modal-dialog"
+              >
+                <div className="modal-content">
+                  <form
+                    onSubmit={(e) => handleReservationSubmit(e, index)}
+                    className="form-panel"
                   >
-                    {rooms.map((room, index) =>
-                      room.id !== reservation.room.id ? (
-                        <option value={room.id} key={index} selected="false">
-                          {room.title}
-                        </option>
-                      ) : (
-                        <option value={room.id} key={index} selected>
-                          {room.title}
-                        </option>
-                      )
-                    )}
-                  </select>
-                  <label htmlFor="reservation-title">Título</label>
-                  <input
-                    type="text"
-                    name="title"
-                    id="reservation-title"
-                    value={reservationToManipulate ? reservationToManipulate.title : ""}
-                    onChange={(e) =>
-                      setReservationToManipulate({
-                        ...reservationToManipulate,
-                        title: e.target.value,
-                      })
-                    }
-                  />
-                  <div className="reservation-time-box">
-                    <div className="time-input">
-                      <label htmlFor="reservation-start-time">Início</label>
-                      <input
-                        type="time"
-                        name="begin"
-                        id="reservation-start-time"
-                        value={
-                          reservationToManipulate ? reservationToManipulate.begin : ""
-                        }
-                        onChange={(e) =>
-                          setReservationToManipulate({
-                            ...reservationToManipulate,
-                            begin: e.target.value,
-                          })
-                        }
-                      />
+                    <label htmlFor="reservation-room">Sala</label>
+                    <select
+                      name="room"
+                      id="reservation-room"
+                      value={
+                        reservationToManipulate && reservationToManipulate.room
+                          ? reservationToManipulate.room.id
+                          : ""
+                      }
+                      onChange={(e) =>
+                        setReservationToManipulate({
+                          ...reservationToManipulate,
+                          room: { id: e.target.value },
+                        })
+                      }
+                      required
+                    >
+                      {rooms.map((room, index) =>
+                        room.id !== reservation.room.id ? (
+                          <option value={room.id} key={index} selected="false">
+                            {room.title}
+                          </option>
+                        ) : (
+                          <option value={room.id} key={index} selected>
+                            {room.title}
+                          </option>
+                        )
+                      )}
+                    </select>
+                    <label htmlFor="reservation-title">Título</label>
+                    <input
+                      type="text"
+                      name="title"
+                      id="reservation-title"
+                      value={
+                        reservationToManipulate
+                          ? reservationToManipulate.title
+                          : ""
+                      }
+                      onChange={(e) =>
+                        setReservationToManipulate({
+                          ...reservationToManipulate,
+                          title: e.target.value,
+                        })
+                      }
+                    />
+                    <div className="reservation-time-box">
+                      <div className="time-input">
+                        <label htmlFor="reservation-start-time">Início</label>
+                        <input
+                          type="time"
+                          name="begin"
+                          id="reservation-start-time"
+                          value={
+                            reservationToManipulate
+                              ? reservationToManipulate.begin
+                              : ""
+                          }
+                          onChange={(e) =>
+                            setReservationToManipulate({
+                              ...reservationToManipulate,
+                              begin: e.target.value,
+                            })
+                          }
+                        />
+                      </div>
+                      <div className="time-input">
+                        <label htmlFor="reservation-end-time">Término</label>
+                        <input
+                          type="time"
+                          name="end"
+                          id="reservation-end-time"
+                          value={
+                            reservationToManipulate
+                              ? reservationToManipulate.end
+                              : ""
+                          }
+                          onChange={(e) =>
+                            setReservationToManipulate({
+                              ...reservationToManipulate,
+                              end: e.target.value,
+                            })
+                          }
+                        />
+                      </div>
                     </div>
-                    <div className="time-input">
-                      <label htmlFor="reservation-end-time">Término</label>
-                      <input
-                        type="time"
-                        name="end"
-                        id="reservation-end-time"
-                        value={
-                          reservationToManipulate ? reservationToManipulate.end : ""
-                        }
-                        onChange={(e) =>
-                          setReservationToManipulate({
-                            ...reservationToManipulate,
-                            end: e.target.value,
-                          })
-                        }
-                      />
-                    </div>
-                  </div>
-                  <label htmlFor="reservation-desc">Descrição</label>
-                  <textarea
-                    type="text"
-                    name="description"
-                    id="reservation-desc"
-                    className="reservation-desc"
-                    value={
-                      reservationToManipulate ? reservationToManipulate.description : ""
-                    }
-                    onChange={(e) =>
-                      setReservationToManipulate({
-                        ...reservationToManipulate,
-                        description: e.target.value,
-                      })
-                    }
-                  />
-                  <button type="submit" className="submit-reservation-btn">
-                    Reservar
-                  </button>
-                  <button className="delete-reservation-btn" onClick={() => handleDeleteReservationClick(index)}>
-                    Excluir reserva
-                  </button>
-                </form>
-              </div>
-            </Dialog>
-            <Dialog
-              key={`delete-dialog-${index}`}
-              header="Apagar reserva"
-              visible={visibleReservationsOnDelete[index]}
-              style={{ width: "20rem" }}
-              onHide={() => handleDeleteReservationClick(index)}
-              className="modal-dialog"
-            >
-              <h3 className="text">
-                Tem certeza que deseja excluir esta reserva?
-              </h3>
-              <p className="reservation-to-delete">{reservation.title}</p>
-              <button className="confirm-delete" onClick={() => handleConfirmDeleteReservation(index)}>Apagar</button>
-              <button className="cancel-delete" onClick={() => handleDeleteReservationClick(index)}>Cancelar</button>
-            </Dialog>
-          </>
-        ))}
+                    <label htmlFor="reservation-desc">Descrição</label>
+                    <textarea
+                      type="text"
+                      name="description"
+                      id="reservation-desc"
+                      className="reservation-desc"
+                      value={
+                        reservationToManipulate
+                          ? reservationToManipulate.description
+                          : ""
+                      }
+                      onChange={(e) =>
+                        setReservationToManipulate({
+                          ...reservationToManipulate,
+                          description: e.target.value,
+                        })
+                      }
+                    />
+                    <button type="submit" className="primary-dialog-btn">
+                      Reservar
+                    </button>
+                    <button
+                      className="secondary-dialog-btn"
+                      onClick={() => handleDeleteReservationClick(index)}
+                    >
+                      Excluir reserva
+                    </button>
+                  </form>
+                </div>
+              </Dialog>
+              <Dialog
+                key={`delete-dialog-${index}`}
+                header="Apagar reserva"
+                visible={visibleReservationsOnDelete[index]}
+                style={{ width: "20rem" }}
+                onHide={() => handleDeleteReservationClick(index)}
+                className="modal-dialog"
+              >
+                <h3 className="text">
+                  Tem certeza que deseja excluir esta reserva?
+                </h3>
+                <p className="reservation-to-delete">{reservation.title}</p>
+                <button
+                  className="primary-dialog-btn"
+                  onClick={() => handleConfirmDeleteReservation(index)}
+                >
+                  Apagar
+                </button>
+                <button
+                  className="secondary-dialog-btn"
+                  onClick={() => handleDeleteReservationClick(index)}
+                >
+                  Cancelar
+                </button>
+              </Dialog>
+            </>
+          ))
+        ) : (
+          <p className="empty-list-text-center">
+            Você ainda não realizou nenhuma reserva.
+            <br />
+            <Link className="link-style" to="/home">Experimente fazer a sua!</Link>
+          </p>
+        )}
       </div>
     </div>
   );

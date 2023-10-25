@@ -5,11 +5,73 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
+.primary-dialog-btn {
+  width: 100%;
+  margin-top: 1.5rem;
+  padding: 0.2rem 0.5rem;
+  outline: none;
+  border: none;
+  background: #001f3f;
+  color: #ebebeb;
+}
+
+.secondary-dialog-btn {
+  width: 100%;
+  margin-top: 1rem;
+  padding: 0.2rem 0.5rem;
+  outline: none;
+  border: 1px solid #001f3f;
+  background: #ebebeb;
+  color: #001f3f;
+}
+
+.link-style {
+  color: #3d9970;
+  font-size: 0.84rem;
+  margin-top: 1rem;
+  outline: none;
+  transition: all 0.2s;
+}
+.link-style:hover, .link-style:focus {
+  color: #001f3f;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+.primary-dialog-btn {
+  width: 100%;
+  margin-top: 1.5rem;
+  padding: 0.2rem 0.5rem;
+  outline: none;
+  border: none;
+  background: #001f3f;
+  color: #ebebeb;
+}
+
+.secondary-dialog-btn {
+  width: 100%;
+  margin-top: 1rem;
+  padding: 0.2rem 0.5rem;
+  outline: none;
+  border: 1px solid #001f3f;
+  background: #ebebeb;
+  color: #001f3f;
+}
+
+.link-style {
+  color: #3d9970;
+  font-size: 0.84rem;
+  margin-top: 1rem;
+  outline: none;
+  transition: all 0.2s;
+}
+.link-style:hover, .link-style:focus {
+  color: #001f3f;
 }
 
 .calendar-body {
@@ -28,11 +90,11 @@
   border: none;
 }
 .calendar-body .react-calendar .react-calendar__navigation {
-  border-bottom: 1px solid #3D9970;
+  border-bottom: 1px solid #3d9970;
   padding-bottom: 1rem;
 }
 .calendar-body .react-calendar .react-calendar__navigation button {
-  color: #001F3F;
+  color: #001f3f;
   font-size: 2rem;
 }
 .calendar-body .react-calendar .react-calendar__navigation .react-calendar__navigation__arrow {
@@ -55,18 +117,18 @@
   background: rgba(61, 153, 112, 0.2);
 }
 .calendar-body .react-calendar .react-calendar__tile--now {
-  background: #3D9970;
-  color: #EBEBEB;
+  background: #3d9970;
+  color: #ebebeb;
 }
 .calendar-body .react-calendar .react-calendar__tile--now:enabled:hover, .calendar-body .react-calendar .react-calendar__tile--now:enabled:focus {
-  background: #3D9970;
-  color: #EBEBEB;
+  background: #3d9970;
+  color: #ebebeb;
 }
 .calendar-body .react-calendar .react-calendar__month-view__days abbr {
   font-size: 1.2rem;
 }
 .calendar-body .react-calendar .react-calendar__month-view__days .react-calendar__month-view__days__day {
-  color: #001F3F;
+  color: #001f3f;
 }
 .calendar-body .react-calendar .react-calendar__month-view__days .react-calendar__month-view__days__day--weekend {
   color: #f44336;
@@ -78,17 +140,17 @@
   background: rgba(61, 153, 112, 0.2);
 }
 .calendar-body .react-calendar .react-calendar__month-view__days .react-calendar__tile--now {
-  background: #3D9970;
-  color: #EBEBEB;
+  background: #3d9970;
+  color: #ebebeb;
 }
 .calendar-body .react-calendar .react-calendar__month-view__days .react-calendar__tile--now:enabled:hover, .calendar-body .react-calendar .react-calendar__month-view__days .react-calendar__tile--now:enabled:focus {
-  background: #3D9970;
-  color: #EBEBEB;
+  background: #3d9970;
+  color: #ebebeb;
 }
 .calendar-body .react-calendar .react-calendar__year-view__months button,
 .calendar-body .react-calendar .react-calendar__decade-view button,
 .calendar-body .react-calendar .react-calendar__century-view button {
-  color: #001F3F;
+  color: #001f3f;
 }
 
 .modal-dialog {
@@ -96,19 +158,19 @@
 }
 .modal-dialog .p-dialog-header,
 .modal-dialog .p-dialog-content {
-  background: #EBEBEB;
-  color: #001F3F;
+  background: #ebebeb;
+  color: #001f3f;
   border-bottom: none;
 }
 .modal-dialog .p-dialog-header .p-dialog-header-icon,
 .modal-dialog .p-dialog-content .p-dialog-header-icon {
-  color: #001F3F;
+  color: #001f3f;
 }
 .modal-dialog .p-dialog-header .p-dialog-header-icon:focus, .modal-dialog .p-dialog-header .p-dialog-header-icon:active, .modal-dialog .p-dialog-header .p-dialog-header-icon:hover,
 .modal-dialog .p-dialog-content .p-dialog-header-icon:focus,
 .modal-dialog .p-dialog-content .p-dialog-header-icon:active,
 .modal-dialog .p-dialog-content .p-dialog-header-icon:hover {
-  color: #3D9970 !important;
+  color: #3d9970 !important;
 }
 .modal-dialog .modal-content {
   box-shadow: none;
@@ -145,8 +207,8 @@
   padding: 0.2rem 0.5rem;
   outline: none;
   border: none;
-  background: #001F3F;
-  color: #EBEBEB;
+  background: #001f3f;
+  color: #ebebeb;
 }
 .modal-dialog .form-panel input,
 .modal-dialog .form-panel select,
@@ -154,21 +216,21 @@
   width: 100%;
   outline: none;
   border: none;
-  border-bottom: 1px solid #001F3F;
+  border-bottom: 1px solid #001f3f;
   padding: 0.2rem 0.5rem;
   background: rgba(143, 143, 143, 0.14);
-  color: #001F3F;
+  color: #001f3f;
   transition: all 0.2s;
 }
 .modal-dialog .form-panel input:focus,
 .modal-dialog .form-panel select:focus,
 .modal-dialog .form-panel .reservation-desc:focus {
-  border-bottom: 1px solid #3D9970;
+  border-bottom: 1px solid #3d9970;
   background-color: rgba(61, 153, 112, 0.2549019608);
   transition: all 0.2s;
 }
 .modal-dialog .form-panel input[type=time]::-webkit-calendar-picker-indicator {
-  background-color: #001F3F;
+  background-color: #001f3f;
   border-radius: 5rem;
 }
 
@@ -180,19 +242,25 @@
   margin: 1rem;
 }
 .reservation-header .reservation-title {
-  color: #001F3F;
+  color: #001f3f;
 }
 .reservation-header .new-reservation-btn {
-  background-color: #001F3F;
-  color: #EBEBEB;
+  background-color: #001f3f;
+  color: #ebebeb;
   outline: none;
   z-index: 0;
 }
 .reservation-header .new-reservation-btn:hover, .reservation-header .new-reservation-btn:focus, .reservation-header .new-reservation-btn:active {
-  background-color: #3D9970;
-  color: #EBEBEB;
+  background-color: #3d9970;
+  color: #ebebeb;
 }
 
+.reservations-list .spin-loader {
+  width: 100%;
+  height: 0.5rem;
+  display: flex;
+  justify-content: center;
+}
 .reservations-list .empty-list-text {
   width: 100%;
   padding: 1rem;
@@ -212,7 +280,7 @@
   transition: all 0.2s;
 }
 .reservations-list .reservation-item .item-text {
-  color: #001F3F;
+  color: #001f3f;
   max-width: 60%;
   overflow: hidden;
 }
@@ -224,7 +292,7 @@
   text-overflow: ellipsis;
 }
 .reservations-list .reservation-item .item-time {
-  color: #3D9970;
+  color: #3d9970;
   font-size: 1.2rem;
   text-wrap: nowrap;
   max-width: 40%;
@@ -254,11 +322,11 @@
 .modal-dialog .modal-content .false-input-text .false-input,
 .modal-dialog .modal-content .false-input-time-box .false-input-time .false-input {
   width: 100%;
-  border-bottom: 1px solid #001F3F;
+  border-bottom: 1px solid #001f3f;
 }
 .modal-dialog .modal-content .false-input-text .false-input-desc,
 .modal-dialog .modal-content .false-input-time-box .false-input-time .false-input-desc {
   width: 100%;
   height: 9rem;
-  border-bottom: 1px solid #001F3F;
+  border-bottom: 1px solid #001f3f;
 }/*# sourceMappingURL=Home.css.map */

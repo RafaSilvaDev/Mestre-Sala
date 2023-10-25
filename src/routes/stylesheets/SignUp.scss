@@ -95,19 +95,6 @@
             background-color: $dark-green;
           }
         }
-
-        .sign-up-link {
-          color: $primary-green;
-          font-size: 0.84rem;
-          margin-top: 1rem;
-          outline: none;
-          transition: all 0.2s;
-
-          &:hover,
-          &:focus {
-            color: $primary-blue;
-          }
-        }
       }
     }
   }

@@ -5,12 +5,53 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
+.primary-dialog-btn {
+  width: 100%;
+  margin-top: 1.5rem;
+  padding: 0.2rem 0.5rem;
+  outline: none;
+  border: none;
+  background: #001F3F;
+  color: #EBEBEB;
+}
+
+.secondary-dialog-btn {
+  width: 100%;
+  margin-top: 1rem;
+  padding: 0.2rem 0.5rem;
+  outline: none;
+  border: 1px solid #001F3F;
+  background: #EBEBEB;
+  color: #001F3F;
+}
+
+.link-style {
+  color: #3D9970;
+  font-size: 0.84rem;
+  margin-top: 1rem;
+  outline: none;
+  transition: all 0.2s;
+}
+.link-style:hover, .link-style:focus {
+  color: #001F3F;
+}
+
 .user-reservations-body .user-reservations-list {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100%;
+}
+.user-reservations-body .user-reservations-list .empty-list-text-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 7rem 1rem 1rem;
+  text-align: center;
 }
 .user-reservations-body .user-reservations-list .user-reservation-item {
   display: flex;
@@ -43,14 +84,4 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-button.delete-reservation-btn {
-  width: 100%;
-  margin-top: 1rem;
-  padding: 0.2rem 0.5rem;
-  outline: none;
-  border: 1px solid #001F3F;
-  background: #EBEBEB;
-  color: #001F3F;
 }/*# sourceMappingURL=UserReservations.css.map */

@@ -87,7 +87,7 @@ const SignUp = () => {
             <button type="submit" className="signup-btn">
               Cadastre-se
             </button>
-            <Link to="/" className="sign-up-link">
+            <Link to="/" className="link-style">
               Já possui acesso? Entre
             </Link>
           </form>
