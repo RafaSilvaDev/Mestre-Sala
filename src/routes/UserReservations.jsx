@@ -116,7 +116,6 @@ const UserReservations = () => {
         config
       );
 
-      // Fechar o Dialog após o envio do formulário
       closeFormDialog(index);
 
       setReservationToManipulate(null);
@@ -138,7 +137,6 @@ const UserReservations = () => {
       };
       await deleteReservation(reservationToManipulate.id, config);
 
-      // Fechar o Dialog após o envio do formulário
       closeDeleteDialog(index);
 
       setReservationToManipulate(null);
