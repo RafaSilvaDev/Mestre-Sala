@@ -113,6 +113,9 @@
 .modal-dialog .modal-content {
   box-shadow: none;
 }
+.modal-dialog .modal-content .error-on-submit {
+  color: #f44336;
+}
 .modal-dialog .form-panel {
   display: flex;
   flex-direction: column;

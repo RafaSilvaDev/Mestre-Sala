@@ -30,6 +30,10 @@
 
   .modal-content {
     box-shadow: none;
+
+    .error-on-submit {
+      color: $primary-red;
+    }
   }
 
   .form-panel {

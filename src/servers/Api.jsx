@@ -29,9 +29,16 @@ export const getReservationsByUserId = async (userId) => {
 
 export const createReservation = async (reservation, config) => {
   try {
-    await api.post("/reservation", reservation, config);
+    const response = await api.post("/reservation", reservation, config);
+    if (response.status == 400 && response.data.message == "Time inserted overlaps an existing reservation.") {
+      throw new Error("Time inserted overlaps an existing reservation.")
+    }
   } catch (error) {
-    console.error("Erro na solicitação POST de reservas: ", error);
+    if(error = "Time inserted overlaps an existing reservation.") {
+      console.error(error);
+    } else {
+      console.error("Erro na solicitação POST de reservas: ", error);
+    }
     throw error; 
   }
 };

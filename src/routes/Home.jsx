@@ -19,8 +19,8 @@ const Home = () => {
   useEffect(() => {
     const fetchData = async () => {
       setReservations(await getReservationsByDate(todayDate));
-    }
-    fetchData().catch(console.error)
+    };
+    fetchData().catch(console.error);
     setSelectedDay(todayDate);
   }, []);
 
@@ -53,9 +53,11 @@ const Home = () => {
     },
   });
 
+  const [submitError, setSubmitError] = useState(false);
   const handleReservationSubmit = async (e) => {
     e.preventDefault();
     try {
+      setSubmitError(false);
       console.log(newReservation);
       newReservation.user.id = localStorage.getItem("userId");
       newReservation.date = selectedDay;
@@ -78,16 +80,18 @@ const Home = () => {
       });
 
       setVisibleNewReservation(false);
-    const updatedReservations = await getReservationsByDate(selectedDay);
-    setReservations(updatedReservations);
+      const updatedReservations = await getReservationsByDate(selectedDay);
+      setReservations(updatedReservations);
     } catch (error) {
+      setSubmitError(true);
       console.error("Erro ao criar a reserva:", error);
     }
   };
 
   const handleDayClick = async (value) => {
     setSelectedDay(value.toISOString().substring(0, 10));
-    setReservations(await getReservationsByDate(selectedDay));
+    const updatedReservations = await getReservationsByDate(selectedDay);
+    setReservations(updatedReservations);
   };
 
   const handleReservationClick = (index) => {
@@ -113,11 +117,19 @@ const Home = () => {
           header="Nova Reserva"
           visible={visibleNewReservation}
           style={{ width: "30rem" }}
-          onHide={() => setVisibleNewReservation(false)}
+          onHide={() => setVisibleNewReservation(false) && setSubmitError(false)}
           className="modal-dialog"
         >
           <div className="modal-content">
             <form onSubmit={handleReservationSubmit} className="form-panel">
+              {submitError ? (
+                <p className="error-on-submit">
+                  Reserva conflitante com outra já agendada neste dia e nesta
+                  sala!
+                </p>
+              ) : (
+                <></>
+              )}
               <label htmlFor="reservation-room">Sala</label>
               <select
                 name="room"
