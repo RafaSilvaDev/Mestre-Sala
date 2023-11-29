@@ -3,4 +3,35 @@
   padding: 0;
   box-sizing: border-box;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+.primary-dialog-btn {
+  width: 100%;
+  margin-top: 1.5rem;
+  padding: 0.2rem 0.5rem;
+  outline: none;
+  border: none;
+  background: #001f3f;
+  color: #ebebeb;
+}
+
+.secondary-dialog-btn {
+  width: 100%;
+  margin-top: 1rem;
+  padding: 0.2rem 0.5rem;
+  outline: none;
+  border: 1px solid #001f3f;
+  background: #ebebeb;
+  color: #001f3f;
+}
+
+.link-style {
+  color: #3d9970;
+  font-size: 0.84rem;
+  margin-top: 1rem;
+  outline: none;
+  transition: all 0.2s;
+}
+.link-style:hover, .link-style:focus {
+  color: #001f3f;
 }/*# sourceMappingURL=reset.css.map */

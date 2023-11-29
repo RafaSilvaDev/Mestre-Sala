@@ -1,17 +1,53 @@
-$primary-blue: #001F3F;
+$primary-blue: #001f3f;
 $primary-gray: #8f8f8f;
 $secondary-gray: #a7a7a7;
-$primary-green: #3D9970;
-$light-green: rgba($color: $primary-green, $alpha: 0.2);
+$primary-green: #3d9970;
+$light-green: rgba(
+  $color: $primary-green,
+  $alpha: 0.2,
+);
 $dark-green: #2d7655;
 $secondary-green: #3d997041;
-$primary-white: #EBEBEB;
+$primary-white: #ebebeb;
 $secondary-white: rgba(143, 143, 143, 0.14);
 $primary-red: #f44336;
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+.primary-dialog-btn {
+  width: 100%;
+  margin-top: 1.5rem;
+  padding: 0.2rem 0.5rem;
+  outline: none;
+  border: none;
+  background: $primary-blue;
+  color: $primary-white;
+}
+
+.secondary-dialog-btn {
+  width: 100%;
+  margin-top: 1rem;
+  padding: 0.2rem 0.5rem;
+  outline: none;
+  border: 1px solid $primary-blue;
+  background: $primary-white;
+  color: $primary-blue;
+}
+
+.link-style {
+  color: $primary-green;
+  font-size: 0.84rem;
+  margin-top: 1rem;
+  outline: none;
+  transition: all 0.2s;
+
+  &:hover,
+  &:focus {
+    color: $primary-blue;
+  }
 }

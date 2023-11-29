@@ -5,6 +5,37 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
+.primary-dialog-btn {
+  width: 100%;
+  margin-top: 1.5rem;
+  padding: 0.2rem 0.5rem;
+  outline: none;
+  border: none;
+  background: #001F3F;
+  color: #EBEBEB;
+}
+
+.secondary-dialog-btn {
+  width: 100%;
+  margin-top: 1rem;
+  padding: 0.2rem 0.5rem;
+  outline: none;
+  border: 1px solid #001F3F;
+  background: #EBEBEB;
+  color: #001F3F;
+}
+
+.link-style {
+  color: #3D9970;
+  font-size: 0.84rem;
+  margin-top: 1rem;
+  outline: none;
+  transition: all 0.2s;
+}
+.link-style:hover, .link-style:focus {
+  color: #001F3F;
+}
+
 .login-page {
   display: flex;
   flex-direction: column;
@@ -99,14 +130,4 @@
 }
 .content-box .form-panel form .login-btn:hover, .content-box .form-panel form .login-btn:focus {
   background-color: #2d7655;
-}
-.content-box .form-panel form .sign-up-link {
-  color: #3D9970;
-  font-size: 0.84rem;
-  margin-top: 1rem;
-  outline: none;
-  transition: all 0.2s;
-}
-.content-box .form-panel form .sign-up-link:hover, .content-box .form-panel form .sign-up-link:focus {
-  color: #001F3F;
 }/*# sourceMappingURL=Login.css.map */

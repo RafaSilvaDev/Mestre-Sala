@@ -70,7 +70,7 @@ const Login = () => {
             <button type="submit" className="login-btn">
               Entrar
             </button>
-            <Link to="/signup" className="sign-up-link">
+            <Link to="/signup" className="link-style">
               Não possui acesso? Cadastre-se
             </Link>
           </form>

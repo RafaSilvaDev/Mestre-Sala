@@ -16,7 +16,7 @@ const Navbar = () => {
       <MDBNavbar className="nav-menu">
         <MDBContainer fluid>
           <div className="logo">
-            <Link className="logo-text" to="/">MESTRE SALA</Link>
+            <Link className="logo-text" to="/home">MESTRE SALA</Link>
           </div>
           <MDBNavbarToggler
             type="button"

@@ -46,9 +46,18 @@ export const createReservation = async (reservation, config) => {
 export const updateReservation = async (id, reservation, config) => {
   try {
     await api.put("/reservation/" + id, reservation, config)
+    await api.put("/reservation/" + id, reservation, config)
   } catch (error) {
     console.error("Erro na solicitação PUT de reservas: ", error);
     throw error;
+  }
+}
+
+export const deleteReservation = async (id, config) => {
+  try {
+    await api.delete("/reservation/" + id, config)
+  } catch (error) {
+    console.error("Erro na solicitação DELETE de reserva: ", error);
   }
 }
 

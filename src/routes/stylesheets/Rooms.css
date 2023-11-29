@@ -5,6 +5,26 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
+.primary-btn {
+  width: 100%;
+  margin-top: 1.5rem;
+  padding: 0.2rem 0.5rem;
+  outline: none;
+  border: none;
+  background: #001F3F;
+  color: #001F3F;
+}
+
+.secondary-btn {
+  width: 100%;
+  margin-top: 1rem;
+  padding: 0.2rem 0.5rem;
+  outline: none;
+  border: 1px solid #001F3F;
+  background: #EBEBEB;
+  color: #001F3F;
+}
+
 .rooms-body .rooms-list {
   display: flex;
   flex-direction: column;

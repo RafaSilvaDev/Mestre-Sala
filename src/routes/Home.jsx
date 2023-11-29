@@ -3,24 +3,24 @@ import Calendar from "react-calendar";
 import Navbar from "../components/Navbar";
 import "./stylesheets/Home.css";
 import "react-calendar/dist/Calendar.css";
-
+import { Spin } from "react-cssfx-loading";
 import { Dialog } from "primereact/dialog";
 import { Button } from "primereact/button";
 import axios, {
   getReservationsByDate,
-  getAllRooms,
   createReservation,
 } from "../servers/Api";
 
 const Home = () => {
+  const [showSpin, setShowSpin] = useState(false);
   const todayDate = new Date().toISOString().substring(0, 10);
   const [selectedDay, setSelectedDay] = useState();
   const [reservations, setReservations] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       setReservations(await getReservationsByDate(todayDate));
-    };
-    fetchData().catch(console.error);
+    }
+    fetchData().catch(console.error)
     setSelectedDay(todayDate);
   }, []);
 
@@ -89,9 +89,13 @@ const Home = () => {
   };
 
   const handleDayClick = async (value) => {
-    setSelectedDay(value.toISOString().substring(0, 10));
-    const updatedReservations = await getReservationsByDate(selectedDay);
+    const selectedDate = value.toISOString().substring(0, 10);
+    setSelectedDay(selectedDate);
+    setShowSpin(true);
+    const updatedReservations = await getReservationsByDate(selectedDate);
     setReservations(updatedReservations);
+
+    setShowSpin(false);
   };
 
   const handleReservationClick = (index) => {
@@ -219,6 +223,9 @@ const Home = () => {
         </Dialog>
       </div>
       <div className="reservations-list">
+        <div className="spin-loader">
+          {showSpin && <Spin color="#3d9970" width="3rem" height="3rem" />}
+        </div>
         {!reservations.length ? (
           <p className="empty-list-text">
             Não há reservas para este dia.
@@ -234,8 +241,8 @@ const Home = () => {
                 onClick={() => handleReservationClick(index)}
               >
                 <div className="item-text">
-                  <h2 className="item-title">{reservation.title}</h2>
-                  <p className="item-subtitle">{reservation.description}</p>
+                  <h2 className="item-title">{reservation.room.title}</h2>
+                  <p className="item-subtitle">{reservation.title}</p>
                 </div>
                 <h3 className="item-time">
                   {reservation.begin} - {reservation.end}
