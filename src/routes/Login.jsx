@@ -7,15 +7,20 @@ import axios from "../servers/Api";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [submitError, setSubmitError] = useState(false)
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
+      setSubmitError(false)
       const response = await axios.post("/auth/login", {
         email: email,
         password: password,
       });
+      if(response.status == 403) {
+        throw new Error("Access denied.")
+      }
       localStorage.setItem("token", response.data.token);
       console.log("Login feito! Aqui está o token: " + response.data.token);
       axios
@@ -30,6 +35,7 @@ const Login = () => {
         });
       navigate("/home");
     } catch (error) {
+      setSubmitError(true);
       console.log("Algo deu errado na requisição ao server! Erro: " + error);
     }
   };
@@ -43,6 +49,13 @@ const Login = () => {
         <div className="form-panel">
           <form onSubmit={handleLogin}>
             <h1 className="title">Login</h1>
+            {submitError ? (
+                <p className="error-on-submit">
+                  Usuário ou senha incorretos!
+                </p>
+              ) : (
+                <></>
+              )}
             <label htmlFor="user-input" className="user-label">
               Usuário
             </label>

@@ -11,8 +11,8 @@
   padding: 0.2rem 0.5rem;
   outline: none;
   border: none;
-  background: #001F3F;
-  color: #EBEBEB;
+  background: #001f3f;
+  color: #ebebeb;
 }
 
 .secondary-dialog-btn {
@@ -20,20 +20,20 @@
   margin-top: 1rem;
   padding: 0.2rem 0.5rem;
   outline: none;
-  border: 1px solid #001F3F;
-  background: #EBEBEB;
-  color: #001F3F;
+  border: 1px solid #001f3f;
+  background: #ebebeb;
+  color: #001f3f;
 }
 
 .link-style {
-  color: #3D9970;
+  color: #3d9970;
   font-size: 0.84rem;
   margin-top: 1rem;
   outline: none;
   transition: all 0.2s;
 }
 .link-style:hover, .link-style:focus {
-  color: #001F3F;
+  color: #001f3f;
 }
 
 .user-reservations-body .user-reservations-list {
@@ -70,10 +70,10 @@
 .user-reservations-body .user-reservations-list .user-reservation-item .reservation-info .title,
 .user-reservations-body .user-reservations-list .user-reservation-item .reservation-info .desc,
 .user-reservations-body .user-reservations-list .user-reservation-item .reservation-datetime .date {
-  color: #001F3F;
+  color: #001f3f;
 }
 .user-reservations-body .user-reservations-list .user-reservation-item .reservation-datetime .begin-end {
-  color: #3D9970;
+  color: #3d9970;
 }
 .user-reservations-body .user-reservations-list .user-reservation-item .reservation-info {
   max-width: 55%;

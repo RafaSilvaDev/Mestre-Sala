@@ -11,8 +11,8 @@
   padding: 0.2rem 0.5rem;
   outline: none;
   border: none;
-  background: #001F3F;
-  color: #EBEBEB;
+  background: #001f3f;
+  color: #ebebeb;
 }
 
 .secondary-dialog-btn {
@@ -20,20 +20,20 @@
   margin-top: 1rem;
   padding: 0.2rem 0.5rem;
   outline: none;
-  border: 1px solid #001F3F;
-  background: #EBEBEB;
-  color: #001F3F;
+  border: 1px solid #001f3f;
+  background: #ebebeb;
+  color: #001f3f;
 }
 
 .link-style {
-  color: #3D9970;
+  color: #3d9970;
   font-size: 0.84rem;
   margin-top: 1rem;
   outline: none;
   transition: all 0.2s;
 }
 .link-style:hover, .link-style:focus {
-  color: #001F3F;
+  color: #001f3f;
 }
 
 .signup-page {
@@ -41,7 +41,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(224deg, #001F3F 0%, #3D9970 100%);
+  background: linear-gradient(224deg, #001f3f 0%, #3d9970 100%);
   min-height: 100vh;
   width: 100%;
 }
@@ -53,8 +53,8 @@
   margin: 2rem 0;
 }
 .signup-page .content-box .app-title {
-  background-color: #EBEBEB;
-  color: #3D9970;
+  background-color: #ebebeb;
+  color: #3d9970;
   padding: 0.5rem;
   width: 10.1rem;
   align-self: flex-end;
@@ -66,14 +66,14 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #EBEBEB;
+  background-color: #ebebeb;
   height: auto;
   width: 19rem;
 }
 .signup-page .content-box .form-panel .title {
   font-size: 1.8rem;
   font-weight: 400;
-  color: #001F3F;
+  color: #001f3f;
 }
 .signup-page .content-box .form-panel form {
   display: flex;
@@ -88,7 +88,7 @@
 .signup-page .content-box .form-panel form .user-label,
 .signup-page .content-box .form-panel form .passwd-label,
 .signup-page .content-box .form-panel form .confirm-passwd-label {
-  color: #001F3F;
+  color: #001f3f;
   width: 100%;
   text-align: start;
   margin-top: 1.8rem;
@@ -98,11 +98,11 @@
 .signup-page .content-box .form-panel form .passwd-input,
 .signup-page .content-box .form-panel form .confirm-passwd-input {
   background-color: rgba(143, 143, 143, 0.14);
-  color: #001F3F;
+  color: #001f3f;
   width: 100%;
   padding: 0.6rem;
   border: none;
-  border-bottom: 1px solid #001F3F;
+  border-bottom: 1px solid #001f3f;
   outline: none;
   transition: all 0.2s;
 }
@@ -110,7 +110,7 @@
 .signup-page .content-box .form-panel form .user-input:focus,
 .signup-page .content-box .form-panel form .passwd-input:focus,
 .signup-page .content-box .form-panel form .confirm-passwd-input:focus {
-  border-bottom: 1px solid #3D9970;
+  border-bottom: 1px solid #3d9970;
   background-color: rgba(61, 153, 112, 0.2549019608);
 }
 .signup-page .content-box .form-panel form .fullname-input::-moz-placeholder, .signup-page .content-box .form-panel form .user-input::-moz-placeholder, .signup-page .content-box .form-panel form .passwd-input::-moz-placeholder, .signup-page .content-box .form-panel form .confirm-passwd-input::-moz-placeholder {
@@ -128,8 +128,8 @@
   width: 100%;
   padding: 0.7rem;
   margin-top: 1.8rem;
-  background-color: #3D9970;
-  color: #EBEBEB;
+  background-color: #3d9970;
+  color: #ebebeb;
   border: none;
   outline: none;
   cursor: pointer;

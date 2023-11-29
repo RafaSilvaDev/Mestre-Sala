@@ -46,6 +46,10 @@
       width: 100%;
       padding: 1.62rem;
 
+      .error-on-submit {
+        color: $primary-red;
+      }
+
       .user-label,
       .passwd-label {
         color: $primary-blue;
