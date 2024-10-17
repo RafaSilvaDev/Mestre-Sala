@@ -22,7 +22,6 @@ const Login = () => {
         throw new Error("Access denied.")
       }
       localStorage.setItem("token", response.data.token);
-      console.log("Login feito! Aqui está o token: " + response.data.token);
       axios
         .get("/auth/user/" + email)
         .then((response) => {

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:8090",
+  baseURL: "https://mestre-sala-be.onrender.com",
   headers: { "Content-Type": "application/json" }
 });
 
