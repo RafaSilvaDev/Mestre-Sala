@@ -12,8 +12,9 @@ import axios, {
 } from "../servers/Api";
 
 const Home = () => {
+  const {timeZone} = Intl.DateTimeFormat().resolvedOptions();
+  const todayDate = new Date(new Date().toLocaleString('en', {timeZone})).toISOString().substring(0, 10);
   const [showSpin, setShowSpin] = useState(false);
-  const todayDate = new Date().toISOString().substring(0, 10);
   const [selectedDay, setSelectedDay] = useState();
   const [reservations, setReservations] = useState([]);
   useEffect(() => {
@@ -22,6 +23,7 @@ const Home = () => {
     }
     fetchData().catch(console.error)
     setSelectedDay(todayDate);
+    console.log(todayDate)
   }, []);
 
   const [rooms, setRooms] = useState([]);
@@ -93,6 +95,7 @@ const Home = () => {
     setSelectedDay(selectedDate);
     setShowSpin(true);
     const updatedReservations = await getReservationsByDate(selectedDate);
+    console.log(selectedDate)
     setReservations(updatedReservations);
 
     setShowSpin(false);
