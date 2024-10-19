@@ -40,6 +40,7 @@ const SignUp = () => {
         <div className="form-panel">
           <form onSubmit={handleSignUp}>
             <h1 className="title">Cadastro</h1>
+            <h4 className="form-warning" style={{color: "red"}}><b>AVISO:</b> essa é uma versão de teste, por isso evite utilizar emails ou senhas de uso pessoal.</h4>
             <label htmlFor="fullname-input" className="fullname-label">
               Nome Completo
             </label>
